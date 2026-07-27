@@ -72,6 +72,18 @@ export const Route = createFileRoute("/objekti/$slug")({
   notFoundComponent: FacilityNotFound,
 });
 
+const bookingUrls = {
+  "teniski-centar-perivoj-kralja-tomislava": "https://www.sporty.plus/hr",
+  "nogometni-kavez": "https://theplayoff.app/",
+} as const;
+
+function getBookingUrl(slug?: string) {
+  if (!slug) {
+    return null;
+  }
+  return bookingUrls[slug as keyof typeof bookingUrls] ?? null;
+}
+
 function VenueDetail() {
   const { venue } = Route.useLoaderData() as {
     venue: Venue;
@@ -275,6 +287,8 @@ function VenueOverview({ venue }: { venue: Venue }) {
 }
 
 function VenueContactCard({ venue }: { venue: Venue }) {
+  const bookingUrl = getBookingUrl(venue.slug);
+
   return (
     <aside className="md:col-span-4">
       <div className="sticky top-28 rounded border border-line bg-surface p-6">
@@ -345,6 +359,19 @@ function VenueContactCard({ venue }: { venue: Venue }) {
               ))}
             </ul>
           </>
+        )}
+
+        {bookingUrl && (
+          <div className="mt-8">
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              Rezerviraj termin
+            </a>
+          </div>
         )}
 
         <div className="mt-8">
@@ -453,6 +480,9 @@ type VenueSectionCardProps = {
 };
 
 function VenueSectionCard({ section, index }: VenueSectionCardProps) {
+  const sectionSlug = section.slug ?? section.id;
+  const bookingUrl = getBookingUrl(sectionSlug);
+
   return (
     <article
       id={section.slug ?? section.id}
@@ -588,6 +618,19 @@ function VenueSectionCard({ section, index }: VenueSectionCardProps) {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {bookingUrl && (
+              <div className="mt-10">
+                <a
+                  href={bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                >
+                  Rezerviraj termin
+                </a>
               </div>
             )}
 

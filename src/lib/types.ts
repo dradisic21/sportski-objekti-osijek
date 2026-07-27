@@ -39,6 +39,8 @@ export interface VenueSection {
   openingHours?: OpeningHour[];
 
   prices?: PriceItem[];
+
+  bookingUrl?: string;
 }
 
 export interface VenueLocation {
@@ -79,6 +81,8 @@ export interface Venue {
   featured?: boolean;
 
   location?: VenueLocation;
+
+  bookingUrl?: string;
 }
 
 export interface DocumentCategory {

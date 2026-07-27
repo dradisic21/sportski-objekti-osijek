@@ -442,7 +442,9 @@ export const venues: Venue[] = [
         shortDescription: "Ograđeni teren za mali nogomet i rekreativnu igru.",
         description:
           "Nogometni kavez na Srednjoškolskom igralištu namijenjen je igranju malog nogometa, školskim sportskim programima, rekreaciji građana i organizaciji manjih sportskih događanja.",
-
+        
+        bookingUrl: "https://theplayoff.app/",
+        
         activities: [
           "Mali nogomet",
           "Nogomet",
@@ -870,6 +872,7 @@ export const venues: Venue[] = [
     address: "Perivoj kralja Tomislava 1, 31000 Osijek",
     phone: "+385 31 285 500",
     email: "info@sportski-objekti.hr",
+    bookingUrl: "https://www.sporty.plus/hr",
     indoor: false,
     activities: [
       "Tenis",
