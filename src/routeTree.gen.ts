@@ -17,11 +17,13 @@ import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-priva
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UvjetiKoristenjaRouteImport } from './routes/uvjeti-koristenja'
 import { Route as DokumentiIndexRouteImport } from './routes/dokumenti.index'
-import { Route as DokumentiCjeniciRouteImport } from './routes/dokumenti.cjenici'
-import { Route as DokumentiFinancijskaIzvjescaRouteImport } from './routes/dokumenti.financijska-izvjesca'
+import { Route as DokumentiGodisnjaFinancijskaIzvjescaRouteImport } from './routes/dokumenti.godisnja-financijska-izvjesca'
 import { Route as DokumentiJavnaNabavaRouteImport } from './routes/dokumenti.javna-nabava'
-import { Route as DokumentiNatjecajiRouteImport } from './routes/dokumenti.natjecaji'
-import { Route as DokumentiPravilniciRouteImport } from './routes/dokumenti.pravilnici'
+import { Route as DokumentiNadzorniOdborRouteImport } from './routes/dokumenti.nadzorni-odbor'
+import { Route as DokumentiPravoNaPristupInformacijamaRouteImport } from './routes/dokumenti.pravo-na-pristup-informacijama'
+import { Route as DokumentiSkupstinaRouteImport } from './routes/dokumenti.skupstina'
+import { Route as DokumentiSponzorstvaIDonacijeRouteImport } from './routes/dokumenti.sponzorstva-i-donacije'
+import { Route as DokumentiZastitaOsobnihPodatakaRouteImport } from './routes/dokumenti.zastita-osobnih-podataka'
 import { Route as NovostiIndexRouteImport } from './routes/novosti.index'
 import { Route as NovostiSlugRouteImport } from './routes/novosti.$slug'
 import { Route as ObjektiIndexRouteImport } from './routes/objekti.index'
@@ -67,15 +69,10 @@ const DokumentiIndexRoute = DokumentiIndexRouteImport.update({
   path: '/dokumenti/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DokumentiCjeniciRoute = DokumentiCjeniciRouteImport.update({
-  id: '/dokumenti/cjenici',
-  path: '/dokumenti/cjenici',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DokumentiFinancijskaIzvjescaRoute =
-  DokumentiFinancijskaIzvjescaRouteImport.update({
-    id: '/dokumenti/financijska-izvjesca',
-    path: '/dokumenti/financijska-izvjesca',
+const DokumentiGodisnjaFinancijskaIzvjescaRoute =
+  DokumentiGodisnjaFinancijskaIzvjescaRouteImport.update({
+    id: '/dokumenti/godisnja-financijska-izvjesca',
+    path: '/dokumenti/godisnja-financijska-izvjesca',
     getParentRoute: () => rootRouteImport,
   } as any)
 const DokumentiJavnaNabavaRoute = DokumentiJavnaNabavaRouteImport.update({
@@ -83,16 +80,34 @@ const DokumentiJavnaNabavaRoute = DokumentiJavnaNabavaRouteImport.update({
   path: '/dokumenti/javna-nabava',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DokumentiNatjecajiRoute = DokumentiNatjecajiRouteImport.update({
-  id: '/dokumenti/natjecaji',
-  path: '/dokumenti/natjecaji',
+const DokumentiNadzorniOdborRoute = DokumentiNadzorniOdborRouteImport.update({
+  id: '/dokumenti/nadzorni-odbor',
+  path: '/dokumenti/nadzorni-odbor',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DokumentiPravilniciRoute = DokumentiPravilniciRouteImport.update({
-  id: '/dokumenti/pravilnici',
-  path: '/dokumenti/pravilnici',
+const DokumentiPravoNaPristupInformacijamaRoute =
+  DokumentiPravoNaPristupInformacijamaRouteImport.update({
+    id: '/dokumenti/pravo-na-pristup-informacijama',
+    path: '/dokumenti/pravo-na-pristup-informacijama',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DokumentiSkupstinaRoute = DokumentiSkupstinaRouteImport.update({
+  id: '/dokumenti/skupstina',
+  path: '/dokumenti/skupstina',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DokumentiSponzorstvaIDonacijeRoute =
+  DokumentiSponzorstvaIDonacijeRouteImport.update({
+    id: '/dokumenti/sponzorstva-i-donacije',
+    path: '/dokumenti/sponzorstva-i-donacije',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DokumentiZastitaOsobnihPodatakaRoute =
+  DokumentiZastitaOsobnihPodatakaRouteImport.update({
+    id: '/dokumenti/zastita-osobnih-podataka',
+    path: '/dokumenti/zastita-osobnih-podataka',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const NovostiIndexRoute = NovostiIndexRouteImport.update({
   id: '/novosti/',
   path: '/novosti/',
@@ -122,11 +137,13 @@ export interface FileRoutesByFullPath {
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uvjeti-koristenja': typeof UvjetiKoristenjaRoute
-  '/dokumenti/cjenici': typeof DokumentiCjeniciRoute
-  '/dokumenti/financijska-izvjesca': typeof DokumentiFinancijskaIzvjescaRoute
+  '/dokumenti/godisnja-financijska-izvjesca': typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   '/dokumenti/javna-nabava': typeof DokumentiJavnaNabavaRoute
-  '/dokumenti/natjecaji': typeof DokumentiNatjecajiRoute
-  '/dokumenti/pravilnici': typeof DokumentiPravilniciRoute
+  '/dokumenti/nadzorni-odbor': typeof DokumentiNadzorniOdborRoute
+  '/dokumenti/pravo-na-pristup-informacijama': typeof DokumentiPravoNaPristupInformacijamaRoute
+  '/dokumenti/skupstina': typeof DokumentiSkupstinaRoute
+  '/dokumenti/sponzorstva-i-donacije': typeof DokumentiSponzorstvaIDonacijeRoute
+  '/dokumenti/zastita-osobnih-podataka': typeof DokumentiZastitaOsobnihPodatakaRoute
   '/novosti/$slug': typeof NovostiSlugRoute
   '/objekti/$slug': typeof ObjektiSlugRoute
   '/dokumenti/': typeof DokumentiIndexRoute
@@ -141,11 +158,13 @@ export interface FileRoutesByTo {
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uvjeti-koristenja': typeof UvjetiKoristenjaRoute
-  '/dokumenti/cjenici': typeof DokumentiCjeniciRoute
-  '/dokumenti/financijska-izvjesca': typeof DokumentiFinancijskaIzvjescaRoute
+  '/dokumenti/godisnja-financijska-izvjesca': typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   '/dokumenti/javna-nabava': typeof DokumentiJavnaNabavaRoute
-  '/dokumenti/natjecaji': typeof DokumentiNatjecajiRoute
-  '/dokumenti/pravilnici': typeof DokumentiPravilniciRoute
+  '/dokumenti/nadzorni-odbor': typeof DokumentiNadzorniOdborRoute
+  '/dokumenti/pravo-na-pristup-informacijama': typeof DokumentiPravoNaPristupInformacijamaRoute
+  '/dokumenti/skupstina': typeof DokumentiSkupstinaRoute
+  '/dokumenti/sponzorstva-i-donacije': typeof DokumentiSponzorstvaIDonacijeRoute
+  '/dokumenti/zastita-osobnih-podataka': typeof DokumentiZastitaOsobnihPodatakaRoute
   '/novosti/$slug': typeof NovostiSlugRoute
   '/objekti/$slug': typeof ObjektiSlugRoute
   '/dokumenti': typeof DokumentiIndexRoute
@@ -161,11 +180,13 @@ export interface FileRoutesById {
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uvjeti-koristenja': typeof UvjetiKoristenjaRoute
-  '/dokumenti/cjenici': typeof DokumentiCjeniciRoute
-  '/dokumenti/financijska-izvjesca': typeof DokumentiFinancijskaIzvjescaRoute
+  '/dokumenti/godisnja-financijska-izvjesca': typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   '/dokumenti/javna-nabava': typeof DokumentiJavnaNabavaRoute
-  '/dokumenti/natjecaji': typeof DokumentiNatjecajiRoute
-  '/dokumenti/pravilnici': typeof DokumentiPravilniciRoute
+  '/dokumenti/nadzorni-odbor': typeof DokumentiNadzorniOdborRoute
+  '/dokumenti/pravo-na-pristup-informacijama': typeof DokumentiPravoNaPristupInformacijamaRoute
+  '/dokumenti/skupstina': typeof DokumentiSkupstinaRoute
+  '/dokumenti/sponzorstva-i-donacije': typeof DokumentiSponzorstvaIDonacijeRoute
+  '/dokumenti/zastita-osobnih-podataka': typeof DokumentiZastitaOsobnihPodatakaRoute
   '/novosti/$slug': typeof NovostiSlugRoute
   '/objekti/$slug': typeof ObjektiSlugRoute
   '/dokumenti/': typeof DokumentiIndexRoute
@@ -182,11 +203,13 @@ export interface FileRouteTypes {
     | '/politika-privatnosti'
     | '/sitemap.xml'
     | '/uvjeti-koristenja'
-    | '/dokumenti/cjenici'
-    | '/dokumenti/financijska-izvjesca'
+    | '/dokumenti/godisnja-financijska-izvjesca'
     | '/dokumenti/javna-nabava'
-    | '/dokumenti/natjecaji'
-    | '/dokumenti/pravilnici'
+    | '/dokumenti/nadzorni-odbor'
+    | '/dokumenti/pravo-na-pristup-informacijama'
+    | '/dokumenti/skupstina'
+    | '/dokumenti/sponzorstva-i-donacije'
+    | '/dokumenti/zastita-osobnih-podataka'
     | '/novosti/$slug'
     | '/objekti/$slug'
     | '/dokumenti/'
@@ -201,11 +224,13 @@ export interface FileRouteTypes {
     | '/politika-privatnosti'
     | '/sitemap.xml'
     | '/uvjeti-koristenja'
-    | '/dokumenti/cjenici'
-    | '/dokumenti/financijska-izvjesca'
+    | '/dokumenti/godisnja-financijska-izvjesca'
     | '/dokumenti/javna-nabava'
-    | '/dokumenti/natjecaji'
-    | '/dokumenti/pravilnici'
+    | '/dokumenti/nadzorni-odbor'
+    | '/dokumenti/pravo-na-pristup-informacijama'
+    | '/dokumenti/skupstina'
+    | '/dokumenti/sponzorstva-i-donacije'
+    | '/dokumenti/zastita-osobnih-podataka'
     | '/novosti/$slug'
     | '/objekti/$slug'
     | '/dokumenti'
@@ -220,11 +245,13 @@ export interface FileRouteTypes {
     | '/politika-privatnosti'
     | '/sitemap.xml'
     | '/uvjeti-koristenja'
-    | '/dokumenti/cjenici'
-    | '/dokumenti/financijska-izvjesca'
+    | '/dokumenti/godisnja-financijska-izvjesca'
     | '/dokumenti/javna-nabava'
-    | '/dokumenti/natjecaji'
-    | '/dokumenti/pravilnici'
+    | '/dokumenti/nadzorni-odbor'
+    | '/dokumenti/pravo-na-pristup-informacijama'
+    | '/dokumenti/skupstina'
+    | '/dokumenti/sponzorstva-i-donacije'
+    | '/dokumenti/zastita-osobnih-podataka'
     | '/novosti/$slug'
     | '/objekti/$slug'
     | '/dokumenti/'
@@ -240,11 +267,13 @@ export interface RootRouteChildren {
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UvjetiKoristenjaRoute: typeof UvjetiKoristenjaRoute
-  DokumentiCjeniciRoute: typeof DokumentiCjeniciRoute
-  DokumentiFinancijskaIzvjescaRoute: typeof DokumentiFinancijskaIzvjescaRoute
+  DokumentiGodisnjaFinancijskaIzvjescaRoute: typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   DokumentiJavnaNabavaRoute: typeof DokumentiJavnaNabavaRoute
-  DokumentiNatjecajiRoute: typeof DokumentiNatjecajiRoute
-  DokumentiPravilniciRoute: typeof DokumentiPravilniciRoute
+  DokumentiNadzorniOdborRoute: typeof DokumentiNadzorniOdborRoute
+  DokumentiPravoNaPristupInformacijamaRoute: typeof DokumentiPravoNaPristupInformacijamaRoute
+  DokumentiSkupstinaRoute: typeof DokumentiSkupstinaRoute
+  DokumentiSponzorstvaIDonacijeRoute: typeof DokumentiSponzorstvaIDonacijeRoute
+  DokumentiZastitaOsobnihPodatakaRoute: typeof DokumentiZastitaOsobnihPodatakaRoute
   NovostiSlugRoute: typeof NovostiSlugRoute
   ObjektiSlugRoute: typeof ObjektiSlugRoute
   DokumentiIndexRoute: typeof DokumentiIndexRoute
@@ -310,18 +339,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DokumentiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dokumenti/cjenici': {
-      id: '/dokumenti/cjenici'
-      path: '/dokumenti/cjenici'
-      fullPath: '/dokumenti/cjenici'
-      preLoaderRoute: typeof DokumentiCjeniciRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dokumenti/financijska-izvjesca': {
-      id: '/dokumenti/financijska-izvjesca'
-      path: '/dokumenti/financijska-izvjesca'
-      fullPath: '/dokumenti/financijska-izvjesca'
-      preLoaderRoute: typeof DokumentiFinancijskaIzvjescaRouteImport
+    '/dokumenti/godisnja-financijska-izvjesca': {
+      id: '/dokumenti/godisnja-financijska-izvjesca'
+      path: '/dokumenti/godisnja-financijska-izvjesca'
+      fullPath: '/dokumenti/godisnja-financijska-izvjesca'
+      preLoaderRoute: typeof DokumentiGodisnjaFinancijskaIzvjescaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dokumenti/javna-nabava': {
@@ -331,18 +353,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DokumentiJavnaNabavaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dokumenti/natjecaji': {
-      id: '/dokumenti/natjecaji'
-      path: '/dokumenti/natjecaji'
-      fullPath: '/dokumenti/natjecaji'
-      preLoaderRoute: typeof DokumentiNatjecajiRouteImport
+    '/dokumenti/nadzorni-odbor': {
+      id: '/dokumenti/nadzorni-odbor'
+      path: '/dokumenti/nadzorni-odbor'
+      fullPath: '/dokumenti/nadzorni-odbor'
+      preLoaderRoute: typeof DokumentiNadzorniOdborRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dokumenti/pravilnici': {
-      id: '/dokumenti/pravilnici'
-      path: '/dokumenti/pravilnici'
-      fullPath: '/dokumenti/pravilnici'
-      preLoaderRoute: typeof DokumentiPravilniciRouteImport
+    '/dokumenti/pravo-na-pristup-informacijama': {
+      id: '/dokumenti/pravo-na-pristup-informacijama'
+      path: '/dokumenti/pravo-na-pristup-informacijama'
+      fullPath: '/dokumenti/pravo-na-pristup-informacijama'
+      preLoaderRoute: typeof DokumentiPravoNaPristupInformacijamaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dokumenti/skupstina': {
+      id: '/dokumenti/skupstina'
+      path: '/dokumenti/skupstina'
+      fullPath: '/dokumenti/skupstina'
+      preLoaderRoute: typeof DokumentiSkupstinaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dokumenti/sponzorstva-i-donacije': {
+      id: '/dokumenti/sponzorstva-i-donacije'
+      path: '/dokumenti/sponzorstva-i-donacije'
+      fullPath: '/dokumenti/sponzorstva-i-donacije'
+      preLoaderRoute: typeof DokumentiSponzorstvaIDonacijeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dokumenti/zastita-osobnih-podataka': {
+      id: '/dokumenti/zastita-osobnih-podataka'
+      path: '/dokumenti/zastita-osobnih-podataka'
+      fullPath: '/dokumenti/zastita-osobnih-podataka'
+      preLoaderRoute: typeof DokumentiZastitaOsobnihPodatakaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/novosti/': {
@@ -384,11 +427,15 @@ const rootRouteChildren: RootRouteChildren = {
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UvjetiKoristenjaRoute: UvjetiKoristenjaRoute,
-  DokumentiCjeniciRoute: DokumentiCjeniciRoute,
-  DokumentiFinancijskaIzvjescaRoute: DokumentiFinancijskaIzvjescaRoute,
+  DokumentiGodisnjaFinancijskaIzvjescaRoute:
+    DokumentiGodisnjaFinancijskaIzvjescaRoute,
   DokumentiJavnaNabavaRoute: DokumentiJavnaNabavaRoute,
-  DokumentiNatjecajiRoute: DokumentiNatjecajiRoute,
-  DokumentiPravilniciRoute: DokumentiPravilniciRoute,
+  DokumentiNadzorniOdborRoute: DokumentiNadzorniOdborRoute,
+  DokumentiPravoNaPristupInformacijamaRoute:
+    DokumentiPravoNaPristupInformacijamaRoute,
+  DokumentiSkupstinaRoute: DokumentiSkupstinaRoute,
+  DokumentiSponzorstvaIDonacijeRoute: DokumentiSponzorstvaIDonacijeRoute,
+  DokumentiZastitaOsobnihPodatakaRoute: DokumentiZastitaOsobnihPodatakaRoute,
   NovostiSlugRoute: NovostiSlugRoute,
   ObjektiSlugRoute: ObjektiSlugRoute,
   DokumentiIndexRoute: DokumentiIndexRoute,
