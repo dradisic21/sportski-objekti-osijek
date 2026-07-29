@@ -14,7 +14,6 @@ import { Route as KolaciciRouteImport } from './routes/kolacici'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as ONamaRouteImport } from './routes/o-nama'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UvjetiKoristenjaRouteImport } from './routes/uvjeti-koristenja'
 import { Route as DokumentiIndexRouteImport } from './routes/dokumenti.index'
 import { Route as DokumentiGodisnjaFinancijskaIzvjescaRouteImport } from './routes/dokumenti.godisnja-financijska-izvjesca'
@@ -52,11 +51,6 @@ const ONamaRoute = ONamaRouteImport.update({
 const PolitikaPrivatnostiRoute = PolitikaPrivatnostiRouteImport.update({
   id: '/politika-privatnosti',
   path: '/politika-privatnosti',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UvjetiKoristenjaRoute = UvjetiKoristenjaRouteImport.update({
@@ -135,7 +129,6 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/o-nama': typeof ONamaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uvjeti-koristenja': typeof UvjetiKoristenjaRoute
   '/dokumenti/godisnja-financijska-izvjesca': typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   '/dokumenti/javna-nabava': typeof DokumentiJavnaNabavaRoute
@@ -156,7 +149,6 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/o-nama': typeof ONamaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uvjeti-koristenja': typeof UvjetiKoristenjaRoute
   '/dokumenti/godisnja-financijska-izvjesca': typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   '/dokumenti/javna-nabava': typeof DokumentiJavnaNabavaRoute
@@ -178,7 +170,6 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/o-nama': typeof ONamaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uvjeti-koristenja': typeof UvjetiKoristenjaRoute
   '/dokumenti/godisnja-financijska-izvjesca': typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   '/dokumenti/javna-nabava': typeof DokumentiJavnaNabavaRoute
@@ -201,7 +192,6 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/o-nama'
     | '/politika-privatnosti'
-    | '/sitemap.xml'
     | '/uvjeti-koristenja'
     | '/dokumenti/godisnja-financijska-izvjesca'
     | '/dokumenti/javna-nabava'
@@ -222,7 +212,6 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/o-nama'
     | '/politika-privatnosti'
-    | '/sitemap.xml'
     | '/uvjeti-koristenja'
     | '/dokumenti/godisnja-financijska-izvjesca'
     | '/dokumenti/javna-nabava'
@@ -243,7 +232,6 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/o-nama'
     | '/politika-privatnosti'
-    | '/sitemap.xml'
     | '/uvjeti-koristenja'
     | '/dokumenti/godisnja-financijska-izvjesca'
     | '/dokumenti/javna-nabava'
@@ -265,7 +253,6 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   ONamaRoute: typeof ONamaRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UvjetiKoristenjaRoute: typeof UvjetiKoristenjaRoute
   DokumentiGodisnjaFinancijskaIzvjescaRoute: typeof DokumentiGodisnjaFinancijskaIzvjescaRoute
   DokumentiJavnaNabavaRoute: typeof DokumentiJavnaNabavaRoute
@@ -316,13 +303,6 @@ declare module '@tanstack/react-router' {
       path: '/politika-privatnosti'
       fullPath: '/politika-privatnosti'
       preLoaderRoute: typeof PolitikaPrivatnostiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uvjeti-koristenja': {
@@ -425,7 +405,6 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   ONamaRoute: ONamaRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   UvjetiKoristenjaRoute: UvjetiKoristenjaRoute,
   DokumentiGodisnjaFinancijskaIzvjescaRoute:
     DokumentiGodisnjaFinancijskaIzvjescaRoute,

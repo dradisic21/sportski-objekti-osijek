@@ -7,16 +7,37 @@ import { Reveal, SplitWords } from "@/components/ui-custom/Reveal";
 import { PriceList } from "@/components/ui-custom/PriceList";
 import { MagneticButton } from "@/components/ui-custom/MagneticButton";
 import { FacilityNotFound } from "@/components/errors/FacilityNotFound";
+import { loadVenueWithPrices } from "@/lib/repositories/publicPriceRepository";
 
 export const Route = createFileRoute("/objekti/$slug")({
-  loader: ({ params }) => {
-    const venue = VenueRepo.bySlug(params.slug);
+  loader: async ({ params }) => {
+    const hardcodedVenue = VenueRepo.bySlug(params.slug);
 
-    if (!venue) {
+    if (!hardcodedVenue) {
       throw notFound();
     }
 
-    return { venue };
+    try {
+      const venue = await loadVenueWithPrices(hardcodedVenue);
+
+      return { venue };
+    } catch (error) {
+      console.error(
+        `Učitavanje cijena za objekt "${hardcodedVenue.slug}" nije uspjelo:`,
+        error
+      );
+
+      return {
+        venue: {
+          ...hardcodedVenue,
+          prices: [],
+          sections: hardcodedVenue.sections?.map((section) => ({
+            ...section,
+            prices: [],
+          })),
+        },
+      };
+    }
   },
 
   head: ({ loaderData }) => {
@@ -91,14 +112,9 @@ function VenueDetail() {
 
   const category = VenueRepo.category(venue.category);
 
-  const hasVenuePrices = venue.prices.length > 0;
-
   const sectionsWithPrices =
-    venue.sections?.filter(
-      (section) => section.prices && section.prices.length > 0
-    ) ?? [];
-
-  const hasAnyPrices = hasVenuePrices || sectionsWithPrices.length > 0;
+    venue.sections?.filter((section) => (section.prices?.length ?? 0) > 0) ??
+    [];
 
   return (
     <>
@@ -116,9 +132,7 @@ function VenueDetail() {
 
       <VenueLocation venue={venue} />
 
-      {hasAnyPrices && (
-        <VenuePrices venue={venue} sectionsWithPrices={sectionsWithPrices} />
-      )}
+      <VenuePrices venue={venue} sectionsWithPrices={sectionsWithPrices} />
 
       <VenueCta />
     </>
@@ -707,6 +721,25 @@ type VenuePricesProps = {
 };
 
 function VenuePrices({ venue, sectionsWithPrices }: VenuePricesProps) {
+  if (venue.prices.length === 0 && sectionsWithPrices.length === 0) {
+    return (
+      <section id="cjenik" className="scroll-mt-28 py-24">
+        <div className="container-editorial">
+          <div className="rounded border border-dashed border-line bg-surface px-8 py-14 text-center">
+            <h2 className="text-display text-3xl text-ink">
+              Cjenik trenutno nije dostupan
+            </h2>
+
+            <p className="mt-4 max-w-2xl mx-auto text-sm leading-6 text-ink-soft">
+              Trenutno nema objavljenih cijena za ovaj objekt. Za informacije o
+              korištenju objekta, dostupnim terminima i uvjetima najma
+              kontaktirajte nas.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section id="cjenik" className="scroll-mt-28 py-24">
       <div className="container-editorial">
@@ -726,19 +759,30 @@ function VenuePrices({ venue, sectionsWithPrices }: VenuePricesProps) {
           </div>
         </div>
 
-        {venue.prices.length > 0 && (
-          <div className="mt-12">
-            <div className="mb-6">
-              <p className="text-eyebrow text-ink-muted">Glavni objekt</p>
+        <div className="mt-12">
+          <div className="mb-6">
+            <p className="text-eyebrow text-ink-muted">Glavni objekt</p>
 
-              <h3 className="text-display mt-2 text-2xl text-ink md:text-3xl">
-                {venue.name}
-              </h3>
-            </div>
-
-            <PriceList items={venue.prices} />
+            <h3 className="text-display mt-2 text-2xl text-ink md:text-3xl">
+              {venue.name}
+            </h3>
           </div>
-        )}
+
+          {venue.prices.length > 0 ? (
+            <PriceList items={venue.prices} />
+          ) : (
+            <div className="rounded border border-dashed border-line bg-surface px-6 py-10 text-center">
+              <p className="text-lg font-medium text-ink">
+                Trenutno nema objavljenih cijena za ovaj objekt.
+              </p>
+
+              <p className="mt-2 text-sm leading-6 text-ink-soft">
+                Za informacije o korištenju objekta, dostupnim terminima i
+                uvjetima najma kontaktirajte nas.
+              </p>
+            </div>
+          )}
+        </div>
 
         {sectionsWithPrices.map((section) => (
           <div

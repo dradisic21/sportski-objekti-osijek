@@ -6,11 +6,11 @@ import {
 
 import { ContactField } from "@/components/contact/ContactField";
 import {
-  INQUIRY_TYPES,
-  type FormErrors,
-  type FormState,
-  type FormStatus,
-} from "@/components/contact/ContactPage";
+  CONTACT_INQUIRY_TYPES,
+  type ContactFormErrors,
+  type ContactFormState,
+  type ContactFormStatus,
+} from "@/lib/types";
 import {
   CALENDAR_VENUES,
 } from "@/components/ui-custom/AvailabilityCalendar";
@@ -18,12 +18,12 @@ import { Reveal } from "@/components/ui-custom/Reveal";
 import { VenueRepo } from "@/lib/repositories";
 
 interface ContactFormProps {
-  form: FormState;
+  form: ContactFormState;
   setForm: React.Dispatch<
-    React.SetStateAction<FormState>
+    React.SetStateAction<ContactFormState>
   >;
-  status: FormStatus;
-  errors: FormErrors;
+  status: ContactFormStatus;
+  errors: ContactFormErrors;
   submit: (
     event: React.FormEvent<HTMLFormElement>,
   ) => void;
@@ -204,7 +204,7 @@ export function ContactForm({
                       — Odaberi —
                     </option>
 
-                    {INQUIRY_TYPES.map(
+                    {CONTACT_INQUIRY_TYPES.map(
                       (inquiryType) => (
                         <option
                           key={inquiryType}

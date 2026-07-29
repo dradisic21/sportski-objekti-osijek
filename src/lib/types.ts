@@ -12,10 +12,12 @@ export interface PriceItem {
   name: string;
   description?: string;
   price: number;
-  unit: string; // osoba | sat | termin | mjesec...
+  unit: string;
   category?: string;
   note?: string;
   active: boolean;
+  priceLabel?: string;
+  timeRange?: string;
 }
 
 export interface OpeningHour {
@@ -29,17 +31,12 @@ export interface VenueSection {
   name: string;
   shortDescription?: string;
   description: string;
-
   activities?: string[];
   facilities?: string[];
   accessibility?: string[];
-
   gallery?: string[];
-
   openingHours?: OpeningHour[];
-
   prices?: PriceItem[];
-
   bookingUrl?: string;
 }
 
@@ -51,37 +48,24 @@ export interface VenueLocation {
 export interface Venue {
   id: string;
   slug: Slug;
-
   name: string;
   category: string;
-
   shortDescription: string;
   description: string;
-
   address: string;
   phone?: string;
   email?: string;
-
   indoor: boolean;
-
   activities: string[];
   facilities: string[];
   accessibility?: string[];
-
   heroImage: string;
-
   gallery?: string[];
-
   openingHours?: OpeningHour[];
-
   prices: PriceItem[];
-
   sections?: VenueSection[];
-
   featured?: boolean;
-
   location?: VenueLocation;
-
   bookingUrl?: string;
 }
 
@@ -103,36 +87,27 @@ export interface DocumentItem {
   url?: string;
 }
 
-export interface NewsPost {
-  id: string;
-  slug: Slug;
-
-  title: string;
-  excerpt: string;
-  content?: string;
-
-  category: string;
-  categorySlug?: string;
-
-  publishedAt: string;
-  updatedAt?: string;
-
-  image?: string;
-  featuredImageUrl?: string | null;
-
-  author?: string | null;
-  venueName?: string | null;
-
-  status?: "draft" | "published" | "archived";
-
-  featured?: boolean;
-
-  externalId?: string;
-  syncStatus?: "synced" | "pending" | "error" | "local";
-  cityAppSync?: boolean;
-
-  readingMinutes?: number;
-}
+// export interface NewsPost {
+//   id: string;
+//   slug: Slug;
+//   title: string;
+//   excerpt: string;
+//   content?: string;
+//   category: string;
+//   categorySlug?: string;
+//   publishedAt: string;
+//   updatedAt?: string;
+//   image?: string;
+//   featuredImageUrl?: string | null;
+//   author?: string | null;
+//   venueName?: string | null;
+//   status?: "draft" | "published" | "archived";
+//   featured?: boolean;
+//   externalId?: string;
+//   syncStatus?: "synced" | "pending" | "error" | "local";
+//   cityAppSync?: boolean;
+//   readingMinutes?: number;
+// }
 
 export interface TeamMember {
   id: string;
@@ -160,3 +135,34 @@ export interface SiteSettings {
   oib: string;
   officeHours: string;
 }
+
+export interface ContactFormState {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  venue: string;
+  date: string;
+  time: string;
+  inquiryType: string;
+  message: string;
+  gdpr: boolean;
+}
+
+export type ContactFormStatus =
+  | "idle"
+  | "sending"
+  | "sent"
+  | "error";
+
+export type ContactFormErrors = Partial<
+  Record<keyof ContactFormState, string>
+>;
+
+export const CONTACT_INQUIRY_TYPES = [
+  "Upit za termin",
+  "Najam objekta",
+  "Sportsko događanje",
+  "Grupni trening",
+  "Ostalo",
+] as const;

@@ -2,7 +2,6 @@ import type {
   ContactDepartment,
   DocumentCategory,
   DocumentItem,
-  NewsPost,
   SiteSettings,
   Venue,
   VenueCategory,
@@ -55,46 +54,6 @@ export const venueCategories: VenueCategory[] = [
     slug: "ostalo",
     name: "Ostali objekti",
     description: "Ostali sportski objekti i pomoćni sadržaji.",
-  },
-];
-
-const commonPrices = (base: number) => [
-  {
-    id: "p1",
-    name: "Pojedinačna ulaznica",
-    description: "Jednokratni ulaz za rekreativce.",
-    price: base,
-    unit: "osoba",
-    category: "Ulaznice",
-    active: true,
-  },
-  {
-    id: "p2",
-    name: "Mjesečna karta",
-    description: "Neograničen pristup u tekućem mjesecu.",
-    price: base * 9,
-    unit: "mjesec",
-    category: "Pretplate",
-    active: true,
-  },
-  {
-    id: "p3",
-    name: "Najam terena",
-    description: "Rezervacija cijelog terena.",
-    price: base * 6,
-    unit: "sat",
-    category: "Najam",
-    note: "Najava minimalno 24h unaprijed.",
-    active: true,
-  },
-  {
-    id: "p4",
-    name: "Grupni termin",
-    description: "Do 20 osoba, uz voditelja.",
-    price: base * 16,
-    unit: "termin",
-    category: "Grupe",
-    active: true,
   },
 ];
 
@@ -168,7 +127,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     sections: [
       {
@@ -214,12 +173,12 @@ export const venues: Venue[] = [
           },
         ],
 
-        prices: commonPrices(4),
+        prices: [],
 
         gallery: [
-          "/images/facilities/nsd-gradski-vrt/nsd-gradski-vrt6.jpg",
-          "/images/facilities/nsd-gradski-vrt/nsd-gradski-vrt7.jpg",
-          "/images/facilities/nsd-gradski-vrt/nsd-gradski-vrt8.jpg",
+          "/images/facilities/nsd-gradski-vrt/mala-dvorana-nsd-gradski-vrt.jpg",
+          "/images/facilities/nsd-gradski-vrt/mala-dvorana-nsd-gradski-vrt2.jpg",
+          "/images/facilities/nsd-gradski-vrt/mala-dvorana-nsd-gradski-vrt3.jpeg",
         ],
       },
     ],
@@ -285,7 +244,7 @@ export const venues: Venue[] = [
         hours: "Prema rasporedu natjecanja",
       },
     ],
-    prices: commonPrices(4),
+    prices: [],
     featured: true,
     location: {
       name: "Zrinjevac",
@@ -348,7 +307,7 @@ export const venues: Venue[] = [
         hours: "Prema rasporedu natjecanja",
       },
     ],
-    prices: commonPrices(4),
+    prices: [],
     featured: true,
     location: {
       name: "Jug II",
@@ -470,7 +429,7 @@ export const venues: Venue[] = [
           },
         ],
 
-        prices: commonPrices(3),
+        prices: [],
 
         gallery: [
           "/images/facilities/srednjeskolsko-igraliste/nogometni-kavez-srednjeskolsko-igraliste.jpg",
@@ -529,7 +488,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(3),
+    prices: [],
 
     location: {
       name: "Pampas",
@@ -580,7 +539,7 @@ export const venues: Venue[] = [
           },
         ],
 
-        prices: commonPrices(3),
+        prices: [],
       },
 
       {
@@ -632,7 +591,7 @@ export const venues: Venue[] = [
           },
         ],
 
-        prices: commonPrices(4),
+        prices: [],
       },
     ],
   },
@@ -689,7 +648,7 @@ export const venues: Venue[] = [
         hours: "Prema rasporedu utakmica i događanja",
       },
     ],
-    prices: commonPrices(5),
+    prices: [],
     featured: true,
     location: {
       name: "Gradski vrt",
@@ -738,7 +697,7 @@ export const venues: Venue[] = [
         hours: "Prema rasporedu treninga i događanja",
       },
     ],
-    prices: commonPrices(3),
+    prices: [],
     location: {
       name: "Pampas",
       googleMaps: "https://www.google.com/maps?q=Hipodrom+Pampas+Osijek",
@@ -795,7 +754,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     location: {
       name: "Olimpija",
@@ -829,7 +788,7 @@ export const venues: Venue[] = [
           },
         ],
 
-        prices: commonPrices(5),
+        prices: [],
       },
 
       {
@@ -857,7 +816,7 @@ export const venues: Venue[] = [
           },
         ],
 
-        prices: commonPrices(6),
+        prices: [],
       },
     ],
   },
@@ -911,7 +870,7 @@ export const venues: Venue[] = [
         hours: "Prema sezonskom rasporedu",
       },
     ],
-    prices: commonPrices(5),
+    prices: [],
     featured: true,
     location: {
       name: "Perivoj kralja Tomislava",
@@ -975,7 +934,7 @@ export const venues: Venue[] = [
         hours: "Prema važećem rasporedu",
       },
     ],
-    prices: commonPrices(4),
+    prices: [],
     featured: true,
     location: {
       name: "Gradski vrt",
@@ -1029,7 +988,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     location: {
       name: "Mačkamama",
@@ -1084,7 +1043,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     location: {
       name: "Iktus",
@@ -1139,7 +1098,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     location: {
       name: "Boćarski dom Retfala",
@@ -1192,7 +1151,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     location: {
       name: "Dom Željezničar",
@@ -1253,7 +1212,7 @@ export const venues: Venue[] = [
       },
     ],
 
-    prices: commonPrices(5),
+    prices: [],
 
     location: {
       name: "Više lokacija",
@@ -1451,113 +1410,7 @@ Sve navedene informacije informativnog su karaktera. Konačne odluke, termini i 
 Za dodatna pitanja i pojašnjenja slobodno se obratite našim odjelima putem kontakt stranice. Naši djelatnici stoje vam na raspolaganju tijekom radnog vremena.
 `.trim();
 
-//ovo obrisati kada se spoji sa supabase-om
-export const news: NewsPost[] = [
-  {
-    id: "n1",
-    slug: "sezona-kupanja-2026",
-    title: "Sezona kupanja na Copacabani počinje 1. lipnja",
-    excerpt:
-      "Otvaramo ljetnu sezonu proširenim programom i produženim radnim vremenom.",
-    content: demoParagraphs("otvaranje sezone kupanja na ŠRC Copacabana"),
-    category: "Najave",
-    categorySlug: "najave",
-    publishedAt: "2026-05-12",
-    status: "published",
-    featured: true,
-    readingMinutes: 3,
-    syncStatus: "local",
-    cityAppSync: false,
-    author: "Uredništvo",
-    venueName: "ŠRC Copacabana",
-  },
-  {
-    id: "n2",
-    slug: "novi-cjenici-2026",
-    title: "Novi cjenici korištenja objekata za 2026. godinu",
-    excerpt:
-      "Ažurirani cjenici svih sportskih objekata dostupni su u sekciji dokumenata.",
-    content: demoParagraphs("novi cjenici korištenja sportskih objekata"),
-    category: "Obavijesti",
-    categorySlug: "obavijesti",
-    publishedAt: "2026-01-05",
-    status: "published",
-    readingMinutes: 2,
-    syncStatus: "local",
-    author: "Uprava",
-  },
-  {
-    id: "n3",
-    slug: "rekonstrukcija-dvorane-jug",
-    title: "Završena rekonstrukcija Sportske dvorane Jug",
-    excerpt: "Obnovljena parketna podloga, LED rasvjeta i nove svlačionice.",
-    content: demoParagraphs("rekonstrukcija Sportske dvorane Jug"),
-    category: "Projekti",
-    categorySlug: "projekti",
-    publishedAt: "2025-11-30",
-    status: "published",
-    featured: true,
-    readingMinutes: 4,
-    syncStatus: "local",
-    venueName: "Sportska dvorana Jug",
-  },
-  {
-    id: "n4",
-    slug: "skola-plivanja-upisi",
-    title: "Otvoreni upisi u Školu plivanja — jesenski ciklus",
-    excerpt: "Program za djecu i odrasle uz certificirane trenere.",
-    content: demoParagraphs("upisi u Školu plivanja"),
-    category: "Programi",
-    categorySlug: "programi",
-    publishedAt: "2025-09-01",
-    status: "published",
-    readingMinutes: 3,
-    syncStatus: "local",
-    venueName: "Gradski bazeni",
-  },
-  {
-    id: "n5",
-    slug: "gradski-vrt-turnir",
-    title: "Međunarodni turnir u Dvorani Gradski vrt",
-    excerpt: "Vikend rukometa s ekipama iz pet zemalja.",
-    content: demoParagraphs("međunarodni rukometni turnir"),
-    category: "Događanja",
-    categorySlug: "dogadjanja",
-    publishedAt: "2025-10-14",
-    status: "published",
-    readingMinutes: 2,
-    syncStatus: "local",
-    venueName: "Dvorana Gradski vrt",
-  },
-  {
-    id: "n6",
-    slug: "tenis-sezona",
-    title: "Otvorena teniska sezona u Teniskom centru",
-    excerpt:
-      "Šest zemljanih terena spremno je za rekreativce i klupske treninge.",
-    content: demoParagraphs("otvaranje teniske sezone"),
-    category: "Najave",
-    categorySlug: "najave",
-    publishedAt: "2025-04-05",
-    status: "published",
-    readingMinutes: 2,
-    syncStatus: "local",
-  },
-  {
-    id: "n7",
-    slug: "javna-nabava-2025",
-    title: "Objavljen plan javne nabave za 2025.",
-    excerpt: "Cjeloviti plan dostupan je u sekciji dokumenata.",
-    content: demoParagraphs("plan javne nabave"),
-    category: "Obavijesti",
-    categorySlug: "obavijesti",
-    publishedAt: "2025-01-20",
-    status: "published",
-    readingMinutes: 2,
-    syncStatus: "local",
-    author: "Odjel nabave",
-  },
-];
+
 
 export const managementTeam: import("../types").TeamMember[] = [
   {

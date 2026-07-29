@@ -7,46 +7,19 @@ import { ContactInfoSection } from "@/components/contact/ContactInfoSection";
 import { ContactMapSection } from "@/components/contact/ContactMapSection";
 import type { CalendarSelection } from "@/components/ui-custom/AvailabilityCalendar";
 import { SiteRepo, VenueRepo } from "@/lib/repositories";
+import type {
+  ContactFormErrors,
+  ContactFormState,
+  ContactFormStatus,
+} from "@/lib/types";
 
-export interface FormState {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  venue: string;
-  date: string;
-  time: string;
-  inquiryType: string;
-  message: string;
-  gdpr: boolean;
-}
-
-export type FormStatus =
-  | "idle"
-  | "sending"
-  | "sent"
-  | "error";
-
-export type FormErrors = Partial<
-  Record<keyof FormState, string>
->;
-
-export const INQUIRY_TYPES = [
-  "Upit za termin",
-  "Najam objekta",
-  "Sportsko događanje",
-  "Grupni trening",
-  "Ostalo",
-];
 
 export function ContactPage() {
   const settings = SiteRepo.settings();
   const departments = SiteRepo.departments();
   const venues = VenueRepo.all();
-
   const formRef = useRef<HTMLDivElement>(null);
-
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<ContactFormState>({
     name: "",
     email: "",
     phone: "",
@@ -58,15 +31,15 @@ export function ContactPage() {
     message: "",
     gdpr: false,
   });
-
+  
   const [status, setStatus] =
-    useState<FormStatus>("idle");
-
+    useState<ContactFormStatus>("idle");
+  
   const [errors, setErrors] =
-    useState<FormErrors>({});
+    useState<ContactFormErrors>({});
 
   function validate(): boolean {
-    const nextErrors: FormErrors = {};
+    const nextErrors: ContactFormErrors = {};
 
     if (form.name.trim().length < 2) {
       nextErrors.name = "Unesite ime i prezime.";

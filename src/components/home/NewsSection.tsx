@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
@@ -7,10 +8,35 @@ import {
 } from "lucide-react";
 
 import { SplitWords } from "@/components/ui-custom/Reveal";
-import { NewsRepo } from "@/lib/repositories";
+import {
+  listPublicNews,
+  type PublicNewsPost,
+} from "@/lib/repositories/publicNewsRepository";
 
 export function NewsSection() {
-  const newsList = NewsRepo.latest(5);
+  const [newsList, setNewsList] = useState<PublicNewsPost[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadNews() {
+      try {
+        const news = await listPublicNews();
+
+        if (mounted) {
+          setNewsList(news.slice(0, 4));
+        }
+      } catch (error) {
+        console.error("Učitavanje novosti nije uspjelo:", error);
+      }
+    }
+
+    void loadNews();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <section className="relative overflow-hidden bg-[#0B1220] py-24 text-white md:py-40">
@@ -60,7 +86,7 @@ export function NewsSection() {
         </div>
 
         <ul className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/10 md:grid-cols-2">
-          {newsList.slice(0, 4).map((news, index) => (
+          {newsList.map((news, index) => (
             <li key={news.id} className="bg-[#0B1220]">
               <Link
                 to="/novosti/$slug"
