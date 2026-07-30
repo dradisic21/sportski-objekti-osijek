@@ -2,8 +2,9 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
-import type { Venue } from "@/lib/types";
-import { VenueRepo, DocumentRepo } from "@/lib/repositories";
+import type { DocumentCategory, Venue } from "@/lib/types";
+import { VenueRepo } from "@/lib/repositories";
+import { listPublicDocumentCategories } from "@/lib/repositories/publicDocumentsRepository";
 import { Logo } from "@/components/logo/logo";
 import { ThemeToggle } from "../ui-custom/ThemeToggle";
 
@@ -26,12 +27,39 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeMega, setActiveMega] = useState<MegaKey | null>(null);
   const [mobile, setMobile] = useState(false);
+  const [docCats, setDocCats] = useState<DocumentCategory[]>([]);
 
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadDocumentCategories() {
+      try {
+        const categories = await listPublicDocumentCategories();
+
+        if (active) {
+          setDocCats(categories);
+        }
+      } catch (error) {
+        console.error("Učitavanje kategorija dokumenata nije uspjelo:", error);
+
+        if (active) {
+          setDocCats([]);
+        }
+      }
+    }
+
+    void loadDocumentCategories();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -126,7 +154,6 @@ export function Header() {
   );
 
   const venueCats = useMemo(() => VenueRepo.categories(), []);
-  const docCats = useMemo(() => DocumentRepo.categories(), []);
 
   const isHome = pathname === "/";
 

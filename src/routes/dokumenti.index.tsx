@@ -1,52 +1,114 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Link,
+} from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { PageHero } from "@/components/ui-custom/PageHero";
-import { DocumentList } from "@/components/ui-custom/DocumentList";
-import { DocumentRepo } from "@/lib/repositories";
-import { Reveal } from "@/components/ui-custom/Reveal";
 
-export const Route = createFileRoute("/dokumenti/")({
+import { DocumentList } from "@/components/ui-custom/DocumentList";
+import { PageHero } from "@/components/ui-custom/PageHero";
+import { Reveal } from "@/components/ui-custom/Reveal";
+import {
+  listPublicDocumentCategories,
+  listPublicDocuments,
+} from "@/lib/repositories/publicDocumentsRepository";
+
+export const Route = createFileRoute(
+  "/dokumenti/",
+)({
+  loader: async () => {
+    const [categories, documents] =
+      await Promise.all([
+        listPublicDocumentCategories(),
+        listPublicDocuments(),
+      ]);
+
+    return {
+      categories,
+      documents,
+    };
+  },
+
   head: () => ({
     meta: [
-      { title: "Dokumenti — Športski objekti Osijek" },
-      { name: "description", content: "Javno dostupna dokumentacija: javna nabava, natječaji, pravilnici, cjenici i financijska izvješća." },
-      { property: "og:title", content: "Dokumenti — Športski objekti Osijek" },
-      { property: "og:url", content: "/dokumenti" },
+      {
+        title:
+          "Dokumenti — Športski objekti Osijek",
+      },
+      {
+        name: "description",
+        content:
+          "Javno dostupna dokumentacija: javna nabava, natječaji, pravilnici, cjenici i financijska izvješća.",
+      },
+      {
+        property: "og:title",
+        content:
+          "Dokumenti — Športski objekti Osijek",
+      },
+      {
+        property: "og:url",
+        content: "/dokumenti",
+      },
     ],
-    links: [{ rel: "canonical", href: "/dokumenti" }],
+    links: [
+      {
+        rel: "canonical",
+        href: "/dokumenti",
+      },
+    ],
   }),
+
   component: DocsIndex,
 });
 
 function DocsIndex() {
-  const cats = DocumentRepo.categories();
-  const all = DocumentRepo.all();
+  const {
+    categories,
+    documents,
+  } = Route.useLoaderData();
 
   return (
     <>
       <PageHero
         eyebrow="Transparentnost"
-        title="Sva dokumentacija na jednom mjestu."
-        intro="Javno dostupni akti, planovi, natječaji i izvješća. Pregledajte po kategoriji ili pretražite cijeli arhiv."
+        title="Dokumenti i izvješća."
+        intro="Javno dostupni akti, planovi, natječaji i izvješća. Pregledajte dokumentaciju prema kategoriji ili pretražite cijeli arhiv."
       />
 
-      {/* Category grid */}
       <section className="border-y border-line bg-surface py-16">
         <div className="container-editorial">
-          <p className="text-eyebrow text-ink-muted">Kategorije</p>
+          <p className="text-eyebrow text-ink-muted">
+            Kategorije
+          </p>
+
           <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-3">
-            {cats.map((c) => (
-              <li key={c.id}>
+            {categories.map((category) => (
+              <li key={category.id}>
                 <Reveal>
                   <Link
-                    to={"/dokumenti/" + c.slug as never}
+                    to={
+                      `/dokumenti/${category.slug}` as never
+                    }
                     className="group flex items-center justify-between border-b border-line py-6"
                   >
                     <div>
-                      <p className="text-display text-2xl text-ink group-hover:text-accent">{c.name}</p>
-                      {c.description && <p className="mt-1 text-sm text-ink-muted">{c.description}</p>}
+                      <p className="text-display text-2xl text-ink group-hover:text-accent">
+                        {category.name}
+                      </p>
+
+                      {category.description && (
+                        <p className="mt-1 text-sm text-ink-muted">
+                          {
+                            category.description
+                          }
+                        </p>
+                      )}
                     </div>
-                    <ArrowUpRight size={18} strokeWidth={1.5} className="text-ink-muted transition-all group-hover:rotate-45 group-hover:text-accent" />
+
+                    <ArrowUpRight
+                      size={18}
+                      strokeWidth={1.5}
+                      className="text-ink-muted transition-all group-hover:rotate-45 group-hover:text-accent"
+                    />
                   </Link>
                 </Reveal>
               </li>
@@ -55,13 +117,29 @@ function DocsIndex() {
         </div>
       </section>
 
-      {/* All documents */}
       <section className="py-24">
         <div className="container-editorial">
-          <p className="text-eyebrow text-ink-muted">Cijeli arhiv</p>
-          <h2 className="text-display mt-4 text-4xl text-ink md:text-5xl">Svi dokumenti</h2>
+          <p className="text-eyebrow text-ink-muted">
+            Cijeli arhiv
+          </p>
+
+          <h2 className="text-display mt-4 text-4xl text-ink md:text-5xl">
+            Svi dokumenti
+          </h2>
+
           <div className="mt-10">
-            <DocumentList documents={all} />
+            {documents.length > 0 ? (
+              <DocumentList
+                documents={documents}
+              />
+            ) : (
+              <div className="rounded border border-line bg-surface px-6 py-10">
+                <p className="text-sm text-ink-muted">
+                  Trenutno nema objavljenih
+                  dokumenata.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

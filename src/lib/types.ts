@@ -80,34 +80,13 @@ export interface DocumentItem {
   id: string;
   title: string;
   category: string;
+  categoryName?: string;
   publishedAt: string;
   fileType: "PDF" | "DOCX" | "XLSX";
   size?: string;
   year: number;
   url?: string;
 }
-
-// export interface NewsPost {
-//   id: string;
-//   slug: Slug;
-//   title: string;
-//   excerpt: string;
-//   content?: string;
-//   category: string;
-//   categorySlug?: string;
-//   publishedAt: string;
-//   updatedAt?: string;
-//   image?: string;
-//   featuredImageUrl?: string | null;
-//   author?: string | null;
-//   venueName?: string | null;
-//   status?: "draft" | "published" | "archived";
-//   featured?: boolean;
-//   externalId?: string;
-//   syncStatus?: "synced" | "pending" | "error" | "local";
-//   cityAppSync?: boolean;
-//   readingMinutes?: number;
-// }
 
 export interface TeamMember {
   id: string;
