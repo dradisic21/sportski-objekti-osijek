@@ -1,7 +1,4 @@
-import {
-  createFileRoute,
-  Link,
-} from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 import { DocumentList } from "@/components/ui-custom/DocumentList";
@@ -12,15 +9,12 @@ import {
   listPublicDocuments,
 } from "@/lib/repositories/publicDocumentsRepository";
 
-export const Route = createFileRoute(
-  "/dokumenti/",
-)({
+export const Route = createFileRoute("/dokumenti/")({
   loader: async () => {
-    const [categories, documents] =
-      await Promise.all([
-        listPublicDocumentCategories(),
-        listPublicDocuments(),
-      ]);
+    const [categories, documents] = await Promise.all([
+      listPublicDocumentCategories(),
+      listPublicDocuments(),
+    ]);
 
     return {
       categories,
@@ -31,8 +25,7 @@ export const Route = createFileRoute(
   head: () => ({
     meta: [
       {
-        title:
-          "Dokumenti — Športski objekti Osijek",
+        title: "Dokumenti — Športski objekti Osijek",
       },
       {
         name: "description",
@@ -41,8 +34,7 @@ export const Route = createFileRoute(
       },
       {
         property: "og:title",
-        content:
-          "Dokumenti — Športski objekti Osijek",
+        content: "Dokumenti — Športski objekti Osijek",
       },
       {
         property: "og:url",
@@ -61,10 +53,7 @@ export const Route = createFileRoute(
 });
 
 function DocsIndex() {
-  const {
-    categories,
-    documents,
-  } = Route.useLoaderData();
+  const { categories, documents } = Route.useLoaderData();
 
   return (
     <>
@@ -76,18 +65,14 @@ function DocsIndex() {
 
       <section className="border-y border-line bg-surface py-16">
         <div className="container-editorial">
-          <p className="text-eyebrow text-ink-muted">
-            Kategorije
-          </p>
+          <p className="text-eyebrow text-ink-muted">Kategorije</p>
 
           <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
               <li key={category.id}>
                 <Reveal>
                   <Link
-                    to={
-                      `/dokumenti/${category.slug}` as never
-                    }
+                    to={`/dokumenti/${category.slug}` as never}
                     className="group flex items-center justify-between border-b border-line py-6"
                   >
                     <div>
@@ -97,9 +82,7 @@ function DocsIndex() {
 
                       {category.description && (
                         <p className="mt-1 text-sm text-ink-muted">
-                          {
-                            category.description
-                          }
+                          {category.description}
                         </p>
                       )}
                     </div>
@@ -119,9 +102,7 @@ function DocsIndex() {
 
       <section className="py-24">
         <div className="container-editorial">
-          <p className="text-eyebrow text-ink-muted">
-            Cijeli arhiv
-          </p>
+          <p className="text-eyebrow text-ink-muted">Cijeli arhiv</p>
 
           <h2 className="text-display mt-4 text-4xl text-ink md:text-5xl">
             Svi dokumenti
@@ -129,14 +110,11 @@ function DocsIndex() {
 
           <div className="mt-10">
             {documents.length > 0 ? (
-              <DocumentList
-                documents={documents}
-              />
+              <DocumentList documents={documents} />
             ) : (
               <div className="rounded border border-line bg-surface px-6 py-10">
                 <p className="text-sm text-ink-muted">
-                  Trenutno nema objavljenih
-                  dokumenata.
+                  Trenutno nema objavljenih dokumenata.
                 </p>
               </div>
             )}

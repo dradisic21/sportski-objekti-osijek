@@ -28,11 +28,9 @@ export function Header() {
   const [activeMega, setActiveMega] = useState<MegaKey | null>(null);
   const [mobile, setMobile] = useState(false);
   const [docCats, setDocCats] = useState<DocumentCategory[]>([]);
-
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
-
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {

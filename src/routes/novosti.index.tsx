@@ -1,16 +1,6 @@
-import {
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
-import {
-  createFileRoute,
-  Link,
-} from "@tanstack/react-router";
-import {
-  Calendar,
-  Clock,
-} from "lucide-react";
+import { useMemo, useState, type ReactNode } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Calendar, Clock } from "lucide-react";
 
 import { PageHero } from "@/components/ui-custom/PageHero";
 import {
@@ -30,7 +20,7 @@ export const Route = createFileRoute("/novosti/")({
     } catch (error) {
       console.error(
         "Učitavanje novosti s javnog frontenda nije uspjelo:",
-        error,
+        error
       );
 
       return {
@@ -77,60 +67,39 @@ export const Route = createFileRoute("/novosti/")({
 const PAGE_SIZE = 6;
 
 function NewsIndex() {
-  const { news: allNews, loadError } =
-    Route.useLoaderData();
+  const { news: allNews, loadError } = Route.useLoaderData();
 
-  const [category, setCategory] =
-    useState("all");
+  const [category, setCategory] = useState("all");
 
-  const [visibleCount, setVisibleCount] =
-    useState(PAGE_SIZE);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const categories = useMemo(() => {
     return Array.from(
       new Set(
-        allNews
-          .map((newsPost) =>
-            newsPost.category.trim(),
-          )
-          .filter(Boolean),
-      ),
+        allNews.map((newsPost) => newsPost.category.trim()).filter(Boolean)
+      )
     ).sort((firstCategory, secondCategory) =>
-      firstCategory.localeCompare(
-        secondCategory,
-        "hr",
-      ),
+      firstCategory.localeCompare(secondCategory, "hr")
     );
   }, [allNews]);
 
   const filteredNews = useMemo(() => {
     return allNews.filter(
-      (newsPost) =>
-        category === "all" ||
-        newsPost.category === category,
+      (newsPost) => category === "all" || newsPost.category === category
     );
   }, [allNews, category]);
 
-  const visibleNews = filteredNews.slice(
-    0,
-    visibleCount,
-  );
+  const visibleNews = filteredNews.slice(0, visibleCount);
 
-  const hasMore =
-    visibleCount < filteredNews.length;
+  const hasMore = visibleCount < filteredNews.length;
 
-  const handleCategoryChange = (
-    nextCategory: string,
-  ) => {
+  const handleCategoryChange = (nextCategory: string) => {
     setCategory(nextCategory);
     setVisibleCount(PAGE_SIZE);
   };
 
   const handleLoadMore = () => {
-    setVisibleCount(
-      (currentCount) =>
-        currentCount + PAGE_SIZE,
-    );
+    setVisibleCount((currentCount) => currentCount + PAGE_SIZE);
   };
 
   return (
@@ -147,39 +116,25 @@ function NewsIndex() {
             <div className="flex flex-wrap gap-2">
               <FilterPill
                 active={category === "all"}
-                onClick={() =>
-                  handleCategoryChange("all")
-                }
+                onClick={() => handleCategoryChange("all")}
               >
                 Sve
               </FilterPill>
 
-              {categories.map(
-                (categoryName) => (
-                  <FilterPill
-                    key={categoryName}
-                    active={
-                      category ===
-                      categoryName
-                    }
-                    onClick={() =>
-                      handleCategoryChange(
-                        categoryName,
-                      )
-                    }
-                  >
-                    {categoryName}
-                  </FilterPill>
-                ),
-              )}
+              {categories.map((categoryName) => (
+                <FilterPill
+                  key={categoryName}
+                  active={category === categoryName}
+                  onClick={() => handleCategoryChange(categoryName)}
+                >
+                  {categoryName}
+                </FilterPill>
+              ))}
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
-                {filteredNews.length}{" "}
-                {getRecordLabel(
-                  filteredNews.length,
-                )}
+                {filteredNews.length} {getRecordLabel(filteredNews.length)}
               </span>
             </div>
           </div>
@@ -191,21 +146,12 @@ function NewsIndex() {
           {loadError ? (
             <NewsErrorState />
           ) : visibleNews.length === 0 ? (
-            <NewsEmptyState
-              hasCategoryFilter={
-                category !== "all"
-              }
-            />
+            <NewsEmptyState hasCategoryFilter={category !== "all"} />
           ) : (
             <ul className="grid grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-              {visibleNews.map(
-                (newsPost) => (
-                  <NewsCard
-                    key={newsPost.id}
-                    newsPost={newsPost}
-                  />
-                ),
-              )}
+              {visibleNews.map((newsPost) => (
+                <NewsCard key={newsPost.id} newsPost={newsPost} />
+              ))}
             </ul>
           )}
 
@@ -226,11 +172,7 @@ function NewsIndex() {
   );
 }
 
-function NewsCard({
-  newsPost,
-}: {
-  newsPost: PublicNewsPost;
-}) {
+function NewsCard({ newsPost }: { newsPost: PublicNewsPost }) {
   return (
     <li>
       <Link
@@ -243,9 +185,7 @@ function NewsCard({
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-[oklch(0.55_0.12_240)] via-[oklch(0.35_0.08_240)] to-[oklch(0.2_0.04_240)]">
           {newsPost.featuredImageUrl ? (
             <img
-              src={
-                newsPost.featuredImageUrl
-              }
+              src={newsPost.featuredImageUrl}
               alt={newsPost.title}
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -265,22 +205,13 @@ function NewsCard({
 
         <div className="mt-5 flex flex-wrap items-center gap-4 font-mono text-[11px] uppercase tracking-widest text-ink-muted">
           <span className="flex items-center gap-1.5">
-            <Calendar
-              size={11}
-              strokeWidth={1.5}
-            />
+            <Calendar size={11} strokeWidth={1.5} />
 
-            {formatPublishedDate(
-              newsPost.publishedAt,
-            )}
+            {formatPublishedDate(newsPost.publishedAt)}
           </span>
 
           <span className="flex items-center gap-1.5">
-            <Clock
-              size={11}
-              strokeWidth={1.5}
-            />
-
+            <Clock size={11} strokeWidth={1.5} />
             {newsPost.readingMinutes} min
           </span>
 
@@ -301,11 +232,7 @@ function NewsCard({
   );
 }
 
-function NewsEmptyState({
-  hasCategoryFilter,
-}: {
-  hasCategoryFilter: boolean;
-}) {
+function NewsEmptyState({ hasCategoryFilter }: { hasCategoryFilter: boolean }) {
   return (
     <div className="border-y border-line py-24 text-center">
       <p className="text-display text-3xl text-ink">
@@ -337,22 +264,15 @@ function NewsErrorState() {
   );
 }
 
-function formatPublishedDate(
-  value: string,
-): string {
-  return new Intl.DateTimeFormat(
-    "hr-HR",
-    {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    },
-  ).format(new Date(value));
+function formatPublishedDate(value: string): string {
+  return new Intl.DateTimeFormat("hr-HR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(new Date(value));
 }
 
-function getRecordLabel(
-  count: number,
-): string {
+function getRecordLabel(count: number): string {
   if (count === 1) {
     return "zapis";
   }
@@ -360,8 +280,7 @@ function getRecordLabel(
   if (
     count % 10 >= 2 &&
     count % 10 <= 4 &&
-    (count % 100 < 12 ||
-      count % 100 > 14)
+    (count % 100 < 12 || count % 100 > 14)
   ) {
     return "zapisa";
   }
@@ -375,11 +294,7 @@ interface FilterPillProps {
   children: ReactNode;
 }
 
-function FilterPill({
-  active,
-  onClick,
-  children,
-}: FilterPillProps) {
+function FilterPill({ active, onClick, children }: FilterPillProps) {
   return (
     <button
       type="button"
