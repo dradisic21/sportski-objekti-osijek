@@ -136,22 +136,48 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+    * {
+      border-color: var(--color-border);
+      box-sizing: border-box;
+    }
+  
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+  
+    body {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: clip;
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      font-family: var(--font-sans);
+      font-feature-settings: "ss01", "cv11";
+      transition:
+        background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  
+    #root {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: clip;
+    }
+  
+    img,
+    video,
+    svg,
+    canvas {
+      max-width: 100%;
+    }
 
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
-    transition: background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
 
   /* Smooth theme transitions across surfaces */
   body, header, footer, section, article, aside, nav,

@@ -1,21 +1,17 @@
 import type { QueryClient } from "@tanstack/react-query";
-
 import {
   HeadContent,
   Outlet,
   createRootRouteWithContext,
   useRouter,
 } from "@tanstack/react-router";
-
 import appCss from "../styles.css?url";
-
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-
 import { SmoothScroll } from "@/components/ui-custom/SmoothScroll";
 import { CookieConsent } from "@/components/ui-custom/CookieConsent";
-
 import { NotFoundPage } from "@/components/errors/NotFoundPage";
+import { BackToTop } from "@/components/ui-custom/BackToTop";
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
@@ -162,6 +158,7 @@ function RootComponent() {
       </main>
       <Footer />
       <CookieConsent />
+      <BackToTop />
     </>
   );
 }
