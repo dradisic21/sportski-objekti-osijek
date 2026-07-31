@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  CheckCircle2,
-  Send,
-} from "lucide-react";
+import { CheckCircle2, Send } from "lucide-react";
 
 import { ContactField } from "@/components/contact/ContactField";
 import {
@@ -11,22 +8,16 @@ import {
   type ContactFormState,
   type ContactFormStatus,
 } from "@/lib/types";
-import {
-  CALENDAR_VENUES,
-} from "@/components/ui-custom/AvailabilityCalendar";
+import { CALENDAR_VENUES } from "@/components/ui-custom/AvailabilityCalendar";
 import { Reveal } from "@/components/ui-custom/Reveal";
 import { VenueRepo } from "@/lib/repositories";
 
 interface ContactFormProps {
   form: ContactFormState;
-  setForm: React.Dispatch<
-    React.SetStateAction<ContactFormState>
-  >;
+  setForm: React.Dispatch<React.SetStateAction<ContactFormState>>;
   status: ContactFormStatus;
   errors: ContactFormErrors;
-  submit: (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => void;
+  submit: (event: React.FormEvent<HTMLFormElement>) => void;
   venues: ReturnType<typeof VenueRepo.all>;
 }
 
@@ -65,19 +56,12 @@ export function ContactForm({
               </h3>
 
               <p className="mt-3 text-sm text-ink-muted">
-                Odgovorit ćemo vam u najkraćem
-                mogućem roku.
+                Odgovorit ćemo vam u najkraćem mogućem roku.
               </p>
             </motion.div>
           ) : (
-            <form
-              onSubmit={submit}
-              noValidate
-              className="space-y-6"
-            >
-              <p className="text-eyebrow text-ink-muted">
-                Pošaljite upit
-              </p>
+            <form onSubmit={submit} noValidate className="space-y-6">
+              <p className="text-eyebrow text-ink-muted">Pošaljite upit</p>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <ContactField
@@ -156,24 +140,16 @@ export function ContactForm({
                     }
                     className="mt-2 w-full border-b border-line bg-transparent py-3 text-sm text-ink focus:border-accent focus:outline-none"
                   >
-                    <option value="">
-                      — Nije odabrano —
-                    </option>
+                    <option value="">— Nije odabrano —</option>
 
                     {CALENDAR_VENUES.map((venue) => (
-                      <option
-                        key={venue}
-                        value={venue}
-                      >
+                      <option key={venue} value={venue}>
                         {venue}
                       </option>
                     ))}
 
                     {venues.map((venue) => (
-                      <option
-                        key={venue.id}
-                        value={venue.name}
-                      >
+                      <option key={venue.id} value={venue.name}>
                         {venue.name}
                       </option>
                     ))}
@@ -194,26 +170,18 @@ export function ContactForm({
                     onChange={(event) =>
                       setForm({
                         ...form,
-                        inquiryType:
-                          event.target.value,
+                        inquiryType: event.target.value,
                       })
                     }
                     className="mt-2 w-full border-b border-line bg-transparent py-3 text-sm text-ink focus:border-accent focus:outline-none"
                   >
-                    <option value="">
-                      — Odaberi —
-                    </option>
+                    <option value="">— Odaberi —</option>
 
-                    {CONTACT_INQUIRY_TYPES.map(
-                      (inquiryType) => (
-                        <option
-                          key={inquiryType}
-                          value={inquiryType}
-                        >
-                          {inquiryType}
-                        </option>
-                      ),
-                    )}
+                    {CONTACT_INQUIRY_TYPES.map((inquiryType) => (
+                      <option key={inquiryType} value={inquiryType}>
+                        {inquiryType}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -286,23 +254,27 @@ export function ContactForm({
                 />
 
                 <span>
-                  Suglasan/na sam s obradom
-                  osobnih podataka u svrhu odgovora
-                  na upit u skladu s{" "}
+                  Suglasan/na sam s obradom osobnih podataka u svrhu odgovora na
+                  upit u skladu s{" "}
                   <a
-                    href="#"
+                    href="/politika-privatnosti"
                     className="underline hover:text-accent"
                   >
                     Izjavom o privatnosti
+                  </a>{" "}
+                  i{" "}
+                  <a
+                    href="/uvjeti-koristenja"
+                    className="underline hover:text-accent"
+                  >
+                    Uvjetima korištenja
                   </a>
                   .
                 </span>
               </label>
 
               {errors.gdpr && (
-                <p className="text-xs text-destructive">
-                  {errors.gdpr}
-                </p>
+                <p className="text-xs text-destructive">{errors.gdpr}</p>
               )}
 
               <button
@@ -310,14 +282,9 @@ export function ContactForm({
                 disabled={status === "sending"}
                 className="inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-sm text-background transition-all hover:bg-accent hover:text-accent-foreground disabled:opacity-60"
               >
-                {status === "sending"
-                  ? "Šalje se…"
-                  : "Pošalji poruku"}
+                {status === "sending" ? "Šalje se…" : "Pošalji poruku"}
 
-                <Send
-                  size={14}
-                  strokeWidth={1.5}
-                />
+                <Send size={14} strokeWidth={1.5} />
               </button>
             </form>
           )}

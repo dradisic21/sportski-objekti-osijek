@@ -715,7 +715,7 @@ export const venues: Venue[] = [
     description:
       "Športski centar Olimpija namijenjen je treninzima, natjecanjima i rekreativnom korištenju. Kompleks obuhvaća veliki nogometni teren te malonogometni teren koji koriste sportski klubovi, škole i građani.",
 
-    address: "Ul. Zeleno polje 32",
+    address: "Ul. Zeleno polje 32, 31000 Osijek",
     phone: "+385 31 285 500",
     email: "info@sportski-objekti.hr",
 
@@ -953,7 +953,7 @@ export const venues: Venue[] = [
     description:
       "Športski centar Mačkamama nalazi se u Bosutskom naselju u Osijeku. Objekt je namijenjen treninzima, natjecanjima i rekreativnom korištenju te ga koriste sportski klubovi, škole i građani. Glavni sadržaj centra čini nogometni teren s pripadajućom infrastrukturom.",
 
-    address: "Gacka 1",
+    address: "Gacka 1, 31000 Osijek",
     phone: "+385 31 285 500",
     email: "info@sportski-objekti.hr",
 
@@ -1009,7 +1009,7 @@ export const venues: Venue[] = [
     description:
       "Iktus je veslački centar smješten uz rijeku Dravu u Osijeku. Objekt je namijenjen treninzima, pripremama i natjecanjima veslača te pruža potrebnu infrastrukturu za rad sportskih klubova i organizaciju sportskih događanja na vodi.",
 
-    address: "Šetalište kardinala Franje Šepera 8",
+    address: "Šetalište kardinala Franje Šepera 8, 31000 Osijek",
     phone: "+385 31 285 500",
     email: "info@sportski-objekti.hr",
 
@@ -1064,7 +1064,7 @@ export const venues: Venue[] = [
     description:
       "Boćarski dom Retfala specijalizirani je sportski objekt namijenjen treninzima, natjecanjima i rekreativnom bavljenju boćanjem. Objekt koriste sportski klubovi, rekreativci i građani tijekom cijele godine.",
 
-    address: "Ljudevita Posavskog 29/A",
+    address: "Ljudevita Posavskog 29/A, 31000 Osijek",
     phone: "+385 31 285 500",
     email: "info@sportski-objekti.hr",
 
@@ -1119,7 +1119,7 @@ export const venues: Venue[] = [
     description:
       "Dom Željezničar sportski je objekt kojim upravljaju Športski objekti d.o.o. Namijenjen je treninzima, natjecanjima i rekreativnom korištenju različitih sportskih sadržaja.",
 
-    address: "Osijek",
+    address: "Ulica Stjepana Radića 15, 31000 Osijek",
     phone: "+385 31 285 500",
     email: "info@sportski-objekti.hr",
 

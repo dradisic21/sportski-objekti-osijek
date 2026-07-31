@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useMemo, useRef, type ReactNode } from "react";
 
 export function Reveal({
   children,
@@ -15,14 +15,29 @@ export function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const MotionTag = motion.create(Tag as any) as any;
+
+  const inView = useInView(ref, {
+    once: true,
+    margin: "-80px",
+  });
+
+  const MotionTag = useMemo(() => motion.create(Tag as any), [Tag]) as any;
 
   return (
     <MotionTag
       ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      initial={{
+        opacity: 0,
+        y,
+      }}
+      animate={
+        inView
+          ? {
+              opacity: 1,
+              y: 0,
+            }
+          : {}
+      }
       transition={{
         duration: 0.9,
         delay,
@@ -50,7 +65,11 @@ export function SplitWords({
 }) {
   const words = text.split(" ");
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const inView = useInView(ref, {
+    once: true,
+    margin: "-40px",
+  });
 
   return (
     <span ref={ref} className={className}>
@@ -61,8 +80,16 @@ export function SplitWords({
         >
           <motion.span
             className={`inline-block ${wordClassName ?? ""}`}
-            initial={{ y: "110%" }}
-            animate={inView ? { y: 0 } : {}}
+            initial={{
+              y: "110%",
+            }}
+            animate={
+              inView
+                ? {
+                    y: 0,
+                  }
+                : {}
+            }
             transition={{
               duration: 0.9,
               delay: delay + index * stagger,
