@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Download,
+  File,
+  FileSpreadsheet,
   FileText,
   Search,
 } from "lucide-react";
@@ -62,6 +64,52 @@ function getPaginationItems(
     "ellipsis-end",
     totalPages,
   ];
+}
+
+function DocumentIcon({
+  type,
+}: {
+  type: DocumentItem["fileType"];
+}) {
+  switch (type) {
+    case "DOC":
+    case "DOCX":
+      return (
+        <FileText
+          size={20}
+          strokeWidth={1.4}
+          className="text-ink-muted"
+        />
+      );
+
+    case "XLS":
+    case "XLSX":
+      return (
+        <FileSpreadsheet
+          size={20}
+          strokeWidth={1.4}
+          className="text-ink-muted"
+        />
+      );
+
+    case "PDF":
+      return (
+        <FileText
+          size={20}
+          strokeWidth={1.4}
+          className="text-ink-muted"
+        />
+      );
+
+    default:
+      return (
+        <File
+          size={20}
+          strokeWidth={1.4}
+          className="text-ink-muted"
+        />
+      );
+  }
 }
 
 export function DocumentList({
@@ -226,8 +274,10 @@ export function DocumentList({
               key={document.id}
               className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-6 py-6"
             >
-              <div className="grid h-12 w-12 shrink-0 place-items-center border border-line font-mono text-[10px] text-ink-muted">
-                {document.fileType}
+              <div className="grid h-12 w-12 shrink-0 place-items-center border border-line">
+                <DocumentIcon
+                  type={document.fileType}
+                />
               </div>
 
               <div className="min-w-0">
@@ -258,6 +308,10 @@ export function DocumentList({
                       {document.size}
                     </span>
                   )}
+
+                  <span>
+                    {document.fileType}
+                  </span>
                 </p>
               </div>
 

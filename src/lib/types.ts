@@ -82,7 +82,7 @@ export interface DocumentItem {
   category: string;
   categoryName?: string;
   publishedAt: string;
-  fileType: "PDF" | "DOCX" | "XLSX";
+  fileType: "PDF" | "DOC" | "DOCX" | "XLS" | "XLSX";
   size?: string;
   year: number;
   url?: string;

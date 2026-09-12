@@ -61,41 +61,51 @@ function getCategory(
     ? (value[0] ?? null)
     : value;
 }
-// Dinamičko određivanje tipa (PDF, DOCX, XLSX...).
-// function getFileType(
-//   mimeType: string,
-//   fileName: string,
-// ): DocumentItem["fileType"] {
-//   const normalizedMimeType =
-//     mimeType.toLowerCase();
 
-//   const normalizedFileName =
-//     fileName.toLowerCase();
+function getFileType(
+  mimeType: string,
+  fileName: string,
+): DocumentItem["fileType"] {
+  const normalizedMimeType =
+    mimeType.toLowerCase();
 
-//   if (
-//     normalizedMimeType.includes(
-//       "spreadsheet",
-//     ) ||
-//     normalizedMimeType.includes("excel") ||
-//     normalizedFileName.endsWith(".xlsx") ||
-//     normalizedFileName.endsWith(".xls")
-//   ) {
-//     return "XLSX";
-//   }
+  const normalizedFileName =
+    fileName.toLowerCase();
 
-//   if (
-//     normalizedMimeType.includes(
-//       "wordprocessingml",
-//     ) ||
-//     normalizedMimeType.includes("msword") ||
-//     normalizedFileName.endsWith(".docx") ||
-//     normalizedFileName.endsWith(".doc")
-//   ) {
-//     return "DOCX";
-//   }
+  if (
+    normalizedMimeType ===
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+    normalizedFileName.endsWith(".xlsx")
+  ) {
+    return "XLSX";
+  }
 
-//   return "PDF";
-// }
+  if (
+    normalizedMimeType ===
+      "application/vnd.ms-excel" ||
+    normalizedFileName.endsWith(".xls")
+  ) {
+    return "XLS";
+  }
+
+  if (
+    normalizedMimeType ===
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    normalizedFileName.endsWith(".docx")
+  ) {
+    return "DOCX";
+  }
+
+  if (
+    normalizedMimeType ===
+      "application/msword" ||
+    normalizedFileName.endsWith(".doc")
+  ) {
+    return "DOC";
+  }
+
+  return "PDF";
+}
 
 function formatFileSize(
   fileSize: number | string,
@@ -131,10 +141,14 @@ function mapDocument(
     id: row.id,
     title: row.title,
     category: category?.slug ?? "",
-    categoryName: category?.name ?? undefined,
+    categoryName:
+      category?.name ?? undefined,
     publishedAt:
       row.published_at ?? row.created_at,
-    fileType: "PDF",
+    fileType: getFileType(
+      row.file_mime_type,
+      row.file_name,
+    ),
     size: formatFileSize(row.file_size),
     year: row.publication_year,
     url: row.file_url,
