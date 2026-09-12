@@ -401,9 +401,9 @@ export const venues: Venue[] = [
         shortDescription: "Ograđeni teren za mali nogomet i rekreativnu igru.",
         description:
           "Nogometni kavez na Srednjoškolskom igralištu namijenjen je igranju malog nogometa, školskim sportskim programima, rekreaciji građana i organizaciji manjih sportskih događanja.",
-        
+
         bookingUrl: "https://theplayoff.app/",
-        
+
         activities: [
           "Mali nogomet",
           "Nogomet",
@@ -1222,6 +1222,282 @@ export const venues: Venue[] = [
 
     sections: [],
   },
+  {
+    id: "v16",
+    slug: "dvorana-za-borilacke-sportove",
+    name: "Dvorana za borilačke sportove",
+    category: "dvorane",
+
+    shortDescription:
+      "Sportska dvorana namijenjena treninzima i aktivnostima borilačkih sportova.",
+
+    description:
+      "Dvorana za borilačke sportove sportski je objekt namijenjen treninzima, pripremama i aktivnostima klubova i sportaša borilačkih sportova.",
+
+    address: "I. G. Kovačića 2, 31000 Osijek",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: true,
+
+    activities: [
+      "Borilački sportovi",
+      "Treninzi",
+      "Sportske pripreme",
+      "Natjecanja",
+    ],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Dvorana za borilačke sportove",
+      googleMaps: "https://www.google.com/maps?q=I.G.Kovačića+2+Osijek",
+    },
+
+    sections: [],
+  },
+  {
+    id: "v17",
+    slug: "kuglana-graficar",
+    name: "Kuglana Grafičar",
+    category: "specijalizirani-objekti",
+
+    shortDescription:
+      "Sportski objekt namijenjen kuglanju, treninzima i natjecanjima.",
+
+    description:
+      "Kuglana Grafičar sportski je objekt namijenjen kuglačkim treninzima, natjecanjima i drugim aktivnostima vezanim uz kuglački sport.",
+
+    address: "J. J. Strossmayera 92, 31000 Osijek",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: true,
+
+    activities: ["Kuglanje", "Treninzi", "Natjecanja", "Rekreacija"],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Kuglana Grafičar",
+      googleMaps: "https://www.google.com/maps?q=J.J.Strossmayera+92+Osijek",
+    },
+
+    sections: [],
+  },
+  {
+    id: "v18",
+    slug: "vodenica",
+    name: "Vodenica",
+    category: "ostalo",
+
+    shortDescription: "Objekt smješten na rijeci Dravi u Osijeku.",
+
+    description: "Vodenica je objekt smješten na rijeci Dravi u Osijeku.",
+
+    address: "Rijeka Drava, Osijek",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: false,
+
+    activities: [],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Vodenica",
+      googleMaps: "https://www.google.com/maps?q=Vodenica+Drava+Osijek",
+    },
+
+    sections: [],
+  },
+  {
+    id: "v19",
+    slug: "sportski-centar-mo-tenja",
+    name: "Sportski centar MO Tenja",
+    category: "vanjski-tereni",
+
+    shortDescription:
+      "Sportski centar u Tenji namijenjen sportskim i rekreativnim aktivnostima.",
+
+    description:
+      "Sportski centar MO Tenja sportski je objekt smješten u Orljavskoj ulici u Tenji.",
+
+    address: "Orljavska ulica, Tenja",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: false,
+
+    activities: [],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Sportski centar MO Tenja",
+      googleMaps: "https://www.google.com/maps?q=Orljavska+ulica+Tenja",
+    },
+
+    sections: [],
+  },
+  {
+    id: "v20",
+    slug: "sportski-objekt-sjenjak",
+    name: "Sportski objekt Sjenjak",
+    category: "vanjski-tereni",
+
+    shortDescription: "Sportski objekt na području Sjenjaka u Osijeku.",
+
+    description:
+      "Sportski objekt Sjenjak namijenjen je sportskim i rekreativnim aktivnostima na području Sjenjaka u Osijeku.",
+
+    address: "I. G. Kovačića 2a, 31000 Osijek",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: false,
+
+    activities: [],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Sportski objekt Sjenjak",
+      googleMaps: "https://www.google.com/maps?q=I.G.Kovačića+2a+Osijek",
+    },
+
+    sections: [],
+  },
+  {
+    id: "v21",
+    slug: "zracno-pristaniste-osijek-cepin",
+    name: "Zračno pristanište Osijek-Čepin",
+    category: "specijalizirani-objekti",
+
+    shortDescription:
+      "Zračno pristanište namijenjeno zrakoplovnim i sportskim aktivnostima.",
+
+    description:
+      "Zračno pristanište Osijek-Čepin objekt je namijenjen zrakoplovnim i povezanim sportskim aktivnostima.",
+
+    address: "Ulica Svetog Leopolda Bogdana Mandića, Osijek",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: false,
+
+    activities: [],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Zračno pristanište Osijek-Čepin",
+      googleMaps:
+        "https://www.google.com/maps?q=Zračno+pristanište+Osijek+Čepin",
+    },
+
+    sections: [],
+  },
+  {
+    id: "v22",
+    slug: "sportski-centar-tenja",
+    name: "Sportski centar Tenja",
+    category: "vanjski-tereni",
+
+    shortDescription:
+      "Sportski centar u Tenji namijenjen sportskim i rekreativnim aktivnostima.",
+
+    description:
+      "Sportski centar Tenja sportski je objekt smješten u Ulici Svete Ane u Tenji.",
+
+    address: "Svete Ane 1, Tenja",
+    phone: "+385 31 285 500",
+    email: "info@sportski-objekti.hr",
+
+    indoor: false,
+
+    activities: [],
+
+    facilities: [],
+
+    accessibility: [],
+
+    heroImage: "",
+
+    gallery: [],
+
+    openingHours: [],
+
+    prices: [],
+
+    location: {
+      name: "Sportski centar Tenja",
+      googleMaps: "https://www.google.com/maps?q=Svete+Ane+1+Tenja",
+    },
+
+    sections: [],
+  },
 ];
 
 export const documentCategories: DocumentCategory[] = [
@@ -1253,8 +1529,7 @@ export const documentCategories: DocumentCategory[] = [
     id: "5",
     slug: "javna-nabava",
     name: "Javna nabava",
-    description:
-      "Planovi nabave, registri ugovora i postupci javne nabave.",
+    description: "Planovi nabave, registri ugovora i postupci javne nabave.",
   },
   {
     id: "6",
@@ -1266,11 +1541,9 @@ export const documentCategories: DocumentCategory[] = [
     id: "7",
     slug: "pravo-na-pristup-informacijama",
     name: "Pravo na pristup informacijama",
-    description:
-      "Dokumenti i kontakt službenika za informiranje.",
+    description: "Dokumenti i kontakt službenika za informiranje.",
   },
 ];
-
 
 const demoParagraphs = (topic: string) =>
   `
@@ -1280,8 +1553,6 @@ Sve navedene informacije informativnog su karaktera. Konačne odluke, termini i 
 
 Za dodatna pitanja i pojašnjenja slobodno se obratite našim odjelima putem kontakt stranice. Naši djelatnici stoje vam na raspolaganju tijekom radnog vremena.
 `.trim();
-
-
 
 export const managementTeam: import("../types").TeamMember[] = [
   {
