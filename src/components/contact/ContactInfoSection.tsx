@@ -53,7 +53,7 @@ import {
             </a>
           </li>
   
-          <li className="flex items-start gap-3">
+          {/* <li className="flex items-start gap-3">
             <Mail
               size={18}
               strokeWidth={1.5}
@@ -76,7 +76,7 @@ import {
             />
   
             {settings.officeHours}
-          </li>
+          </li> */}
         </ul>
   
         <div className="mt-12">

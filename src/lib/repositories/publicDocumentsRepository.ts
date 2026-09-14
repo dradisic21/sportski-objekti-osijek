@@ -1,11 +1,23 @@
 import { supabase } from "@/lib/supabase";
+
 import type {
   DocumentCategory,
   DocumentItem,
+  DocumentSubcategory,
 } from "@/lib/types";
 
 interface DocumentCategoryRow {
   id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  active: boolean;
+  sort_order: number;
+}
+
+interface DocumentSubcategoryRow {
+  id: string;
+  category_id: string;
   slug: string;
   name: string;
   description: string | null;
@@ -18,6 +30,7 @@ interface DocumentRow {
   title: string;
   slug: string;
   category_id: string;
+  subcategory_id: string | null;
   description: string | null;
   publication_year: number;
   published_at: string | null;
@@ -30,15 +43,14 @@ interface DocumentRow {
   featured: boolean;
   created_at: string;
   updated_at: string;
-  document_categories:
-    | DocumentCategoryRow
-    | DocumentCategoryRow[]
-    | null;
+
+  document_categories: DocumentCategoryRow | DocumentCategoryRow[] | null;
+
+  document_subcategories:
+    DocumentSubcategoryRow | DocumentSubcategoryRow[] | null;
 }
 
-function mapDocumentCategory(
-  row: DocumentCategoryRow,
-): DocumentCategory {
+function mapDocumentCategory(row: DocumentCategoryRow): DocumentCategory {
   return {
     id: row.id,
     slug: row.slug,
@@ -47,30 +59,45 @@ function mapDocumentCategory(
   };
 }
 
+function mapDocumentSubcategory(
+  row: DocumentSubcategoryRow
+): DocumentSubcategory {
+  return {
+    id: row.id,
+    categoryId: row.category_id,
+    slug: row.slug,
+    name: row.name,
+    description: row.description ?? undefined,
+  };
+}
+
 function getCategory(
-  value:
-    | DocumentCategoryRow
-    | DocumentCategoryRow[]
-    | null,
+  value: DocumentCategoryRow | DocumentCategoryRow[] | null
 ): DocumentCategoryRow | null {
   if (!value) {
     return null;
   }
 
-  return Array.isArray(value)
-    ? (value[0] ?? null)
-    : value;
+  return Array.isArray(value) ? (value[0] ?? null) : value;
+}
+
+function getSubcategory(
+  value: DocumentSubcategoryRow | DocumentSubcategoryRow[] | null
+): DocumentSubcategoryRow | null {
+  if (!value) {
+    return null;
+  }
+
+  return Array.isArray(value) ? (value[0] ?? null) : value;
 }
 
 function getFileType(
   mimeType: string,
-  fileName: string,
+  fileName: string
 ): DocumentItem["fileType"] {
-  const normalizedMimeType =
-    mimeType.toLowerCase();
+  const normalizedMimeType = mimeType.toLowerCase();
 
-  const normalizedFileName =
-    fileName.toLowerCase();
+  const normalizedFileName = fileName.toLowerCase();
 
   if (
     normalizedMimeType ===
@@ -81,8 +108,7 @@ function getFileType(
   }
 
   if (
-    normalizedMimeType ===
-      "application/vnd.ms-excel" ||
+    normalizedMimeType === "application/vnd.ms-excel" ||
     normalizedFileName.endsWith(".xls")
   ) {
     return "XLS";
@@ -97,8 +123,7 @@ function getFileType(
   }
 
   if (
-    normalizedMimeType ===
-      "application/msword" ||
+    normalizedMimeType === "application/msword" ||
     normalizedFileName.endsWith(".doc")
   ) {
     return "DOC";
@@ -107,9 +132,7 @@ function getFileType(
   return "PDF";
 }
 
-function formatFileSize(
-  fileSize: number | string,
-): string | undefined {
+function formatFileSize(fileSize: number | string): string | undefined {
   const bytes = Number(fileSize);
 
   if (!Number.isFinite(bytes) || bytes <= 0) {
@@ -124,33 +147,35 @@ function formatFileSize(
     return `${(bytes / 1024).toFixed(1)} KB`;
   }
 
-  return `${(
-    bytes /
-    (1024 * 1024)
-  ).toFixed(1)} MB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function mapDocument(
-  row: DocumentRow,
-): DocumentItem {
-  const category = getCategory(
-    row.document_categories,
-  );
+function mapDocument(row: DocumentRow): DocumentItem {
+  const category = getCategory(row.document_categories);
+
+  const subcategory = getSubcategory(row.document_subcategories);
 
   return {
     id: row.id,
     title: row.title,
+
     category: category?.slug ?? "",
-    categoryName:
-      category?.name ?? undefined,
-    publishedAt:
-      row.published_at ?? row.created_at,
-    fileType: getFileType(
-      row.file_mime_type,
-      row.file_name,
-    ),
+    categoryName: category?.name ?? undefined,
+
+    subcategoryId: row.subcategory_id,
+
+    subcategorySlug: subcategory?.slug ?? undefined,
+
+    subcategoryName: subcategory?.name ?? undefined,
+
+    publishedAt: row.published_at ?? row.created_at,
+
+    fileType: getFileType(row.file_mime_type, row.file_name),
+
     size: formatFileSize(row.file_size),
+
     year: row.publication_year,
+
     url: row.file_url,
   };
 }
@@ -160,6 +185,7 @@ const documentSelect = `
   title,
   slug,
   category_id,
+  subcategory_id,
   description,
   publication_year,
   published_at,
@@ -172,8 +198,19 @@ const documentSelect = `
   featured,
   created_at,
   updated_at,
+
   document_categories!documents_category_id_fkey (
     id,
+    slug,
+    name,
+    description,
+    active,
+    sort_order
+  ),
+
+  document_subcategories (
+    id,
+    category_id,
     slug,
     name,
     description,
@@ -195,7 +232,7 @@ export async function listPublicDocumentCategories(): Promise<
         description,
         active,
         sort_order
-      `,
+      `
     )
     .eq("active", true)
     .order("sort_order", {
@@ -207,17 +244,15 @@ export async function listPublicDocumentCategories(): Promise<
 
   if (error) {
     throw new Error(
-      `Učitavanje kategorija dokumenata nije uspjelo: ${error.message}`,
+      `Učitavanje kategorija dokumenata nije uspjelo: ${error.message}`
     );
   }
 
-  return (
-    (data ?? []) as DocumentCategoryRow[]
-  ).map(mapDocumentCategory);
+  return ((data ?? []) as DocumentCategoryRow[]).map(mapDocumentCategory);
 }
 
 export async function getPublicDocumentCategoryBySlug(
-  slug: string,
+  slug: string
 ): Promise<DocumentCategory | null> {
   const { data, error } = await supabase
     .from("document_categories")
@@ -229,7 +264,7 @@ export async function getPublicDocumentCategoryBySlug(
         description,
         active,
         sort_order
-      `,
+      `
     )
     .eq("slug", slug)
     .eq("active", true)
@@ -237,7 +272,7 @@ export async function getPublicDocumentCategoryBySlug(
 
   if (error) {
     throw new Error(
-      `Učitavanje kategorije dokumenata nije uspjelo: ${error.message}`,
+      `Učitavanje kategorije dokumenata nije uspjelo: ${error.message}`
     );
   }
 
@@ -245,14 +280,48 @@ export async function getPublicDocumentCategoryBySlug(
     return null;
   }
 
-  return mapDocumentCategory(
-    data as DocumentCategoryRow,
-  );
+  return mapDocumentCategory(data as DocumentCategoryRow);
 }
 
-export async function listPublicDocuments(): Promise<
-  DocumentItem[]
-> {
+export async function listPublicDocumentSubcategoriesByCategoryId(
+  categoryId: string
+): Promise<DocumentSubcategory[]> {
+  if (!categoryId) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("document_subcategories")
+    .select(
+      `
+        id,
+        category_id,
+        slug,
+        name,
+        description,
+        active,
+        sort_order
+      `
+    )
+    .eq("category_id", categoryId)
+    .eq("active", true)
+    .order("sort_order", {
+      ascending: true,
+    })
+    .order("name", {
+      ascending: true,
+    });
+
+  if (error) {
+    throw new Error(
+      `Učitavanje podkategorija dokumenata nije uspjelo: ${error.message}`
+    );
+  }
+
+  return ((data ?? []) as DocumentSubcategoryRow[]).map(mapDocumentSubcategory);
+}
+
+export async function listPublicDocuments(): Promise<DocumentItem[]> {
   const now = new Date().toISOString();
 
   const { data, error } = await supabase
@@ -272,16 +341,12 @@ export async function listPublicDocuments(): Promise<
     });
 
   if (error) {
-    throw new Error(
-      `Učitavanje dokumenata nije uspjelo: ${error.message}`,
-    );
+    throw new Error(`Učitavanje dokumenata nije uspjelo: ${error.message}`);
   }
 
-  return ((data ?? []) as DocumentRow[])
+  return ((data ?? []) as unknown as DocumentRow[])
     .filter((row) => {
-      const category = getCategory(
-        row.document_categories,
-      );
+      const category = getCategory(row.document_categories);
 
       return category?.active === true;
     })
@@ -289,12 +354,9 @@ export async function listPublicDocuments(): Promise<
 }
 
 export async function listPublicDocumentsByCategorySlug(
-  categorySlug: string,
+  categorySlug: string
 ): Promise<DocumentItem[]> {
-  const category =
-    await getPublicDocumentCategoryBySlug(
-      categorySlug,
-    );
+  const category = await getPublicDocumentCategoryBySlug(categorySlug);
 
   if (!category) {
     return [];
@@ -321,11 +383,9 @@ export async function listPublicDocumentsByCategorySlug(
 
   if (error) {
     throw new Error(
-      `Učitavanje dokumenata kategorije "${category.name}" nije uspjelo: ${error.message}`,
+      `Učitavanje dokumenata kategorije "${category.name}" nije uspjelo: ${error.message}`
     );
   }
 
-  return ((data ?? []) as DocumentRow[]).map(
-    mapDocument,
-  );
+  return ((data ?? []) as unknown as DocumentRow[]).map(mapDocument);
 }

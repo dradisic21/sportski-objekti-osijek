@@ -76,13 +76,34 @@ export interface DocumentCategory {
   description?: string;
 }
 
+export interface DocumentSubcategory {
+  id: string;
+  categoryId: string;
+  slug: Slug;
+  name: string;
+  description?: string;
+}
+
 export interface DocumentItem {
   id: string;
   title: string;
+
   category: string;
   categoryName?: string;
+
+  subcategoryId?: string | null;
+  subcategorySlug?: string;
+  subcategoryName?: string;
+
   publishedAt: string;
-  fileType: "PDF" | "DOC" | "DOCX" | "XLS" | "XLSX";
+
+  fileType:
+    | "PDF"
+    | "DOC"
+    | "DOCX"
+    | "XLS"
+    | "XLSX";
+
   size?: string;
   year: number;
   url?: string;

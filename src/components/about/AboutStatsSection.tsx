@@ -8,8 +8,8 @@ const stats = [
     label: "Godina djelovanja",
   },
   {
-    value: 24,
-    suffix: "+",
+    value: 22,
+    suffix: "",
     label: "Sportskih objekata",
   },
   {

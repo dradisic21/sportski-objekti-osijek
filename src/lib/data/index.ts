@@ -1608,13 +1608,13 @@ export const contactDepartments: ContactDepartment[] = [
     email: "ivanka.nadarevic@sportski-objekti.hr",
     phone: "Na pisani upit",
   },
-  {
-    id: "c3",
-    name: "Javna nabava",
-    person: "Odjel nabave",
-    email: "nabava@sportski-objekti.hr",
-    phone: "Na pisani upit",
-  },
+  // {
+  //   id: "c3",
+  //   name: "Javna nabava",
+  //   person: "Odjel nabave",
+  //   email: "nabava@sportski-objekti.hr",
+  //   phone: "Na pisani upit",
+  // },
   // {
   //   id: "c4",
   //   name: "Održavanje",

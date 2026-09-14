@@ -3,12 +3,12 @@ import { Reveal } from "@/components/ui-custom/Reveal";
 
 const stats = [
   {
-    value: 24,
-    suffix: "+",
+    value: 22,
+    suffix: "",
     label: "Sportskih objekata",
   },
   {
-    value: 68,
+    value: 17,
     suffix: "",
     label: "Javnih igrališta",
   },
