@@ -132,7 +132,7 @@ export const venues: Venue[] = [
     sections: [
       {
         id: "male-dvorane",
-        name: "Mala dvorane NŠD Gradski vrt",
+        name: "Mala dvorana NŠD Gradski vrt",
         shortDescription:
           "Dvorane za trening, rekreaciju i manje sportske programe.",
         description:

@@ -722,24 +722,9 @@ type VenuePricesProps = {
 
 function VenuePrices({ venue, sectionsWithPrices }: VenuePricesProps) {
   if (venue.prices.length === 0 && sectionsWithPrices.length === 0) {
-    return (
-      <section id="cjenik" className="scroll-mt-28 py-24">
-        <div className="container-editorial">
-          <div className="rounded border border-dashed border-line bg-surface px-8 py-14 text-center">
-            <h2 className="text-display text-3xl text-ink">
-              Cjenik trenutno nije dostupan
-            </h2>
-
-            <p className="mt-4 max-w-2xl mx-auto text-sm leading-6 text-ink-soft">
-              Trenutno nema objavljenih cijena za ovaj objekt. Za informacije o
-              korištenju objekta, dostupnim terminima i uvjetima najma
-              kontaktirajte nas.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
+    return null;
   }
+
   return (
     <section id="cjenik" className="scroll-mt-28 py-24">
       <div className="container-editorial">
@@ -759,30 +744,19 @@ function VenuePrices({ venue, sectionsWithPrices }: VenuePricesProps) {
           </div>
         </div>
 
-        <div className="mt-12">
-          <div className="mb-6">
-            <p className="text-eyebrow text-ink-muted">Glavni objekt</p>
+        {venue.prices.length > 0 && (
+          <div className="mt-12">
+            <div className="mb-6">
+              <p className="text-eyebrow text-ink-muted">Glavni objekt</p>
 
-            <h3 className="text-display mt-2 text-2xl text-ink md:text-3xl">
-              {venue.name}
-            </h3>
-          </div>
-
-          {venue.prices.length > 0 ? (
-            <PriceList items={venue.prices} />
-          ) : (
-            <div className="rounded border border-dashed border-line bg-surface px-6 py-10 text-center">
-              <p className="text-lg font-medium text-ink">
-                Trenutno nema objavljenih cijena za ovaj objekt.
-              </p>
-
-              <p className="mt-2 text-sm leading-6 text-ink-soft">
-                Za informacije o korištenju objekta, dostupnim terminima i
-                uvjetima najma kontaktirajte nas.
-              </p>
+              <h3 className="text-display mt-2 text-2xl text-ink md:text-3xl">
+                {venue.name}
+              </h3>
             </div>
-          )}
-        </div>
+
+            <PriceList items={venue.prices} />
+          </div>
+        )}
 
         {sectionsWithPrices.map((section) => (
           <div
