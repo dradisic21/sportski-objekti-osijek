@@ -12,7 +12,7 @@ export const siteSettings: SiteSettings = {
   legalName: "Športski objekti d.o.o. Osijek",
   address: "Kneza Trpimira 23, 31000 Osijek",
   phone: "+385 31 285 500",
-  email: "info@sportski-objekti.hr",
+  email: "uprava@sportski-objekti.hr",
   oib: "89861654362",
   officeHours: "Pon – Pet · 08:00 – 16:00",
 };
@@ -68,7 +68,7 @@ export const venues: Venue[] = [
       "Nastavno-športska dvorana Gradski vrt višenamjenski je sportski kompleks namijenjen održavanju treninga, sportskih natjecanja, kulturnih događanja, koncerata, sajmova i drugih javnih manifestacija.",
     address: "Kneza Trpimira 23, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     indoor: true,
 
     activities: [
@@ -132,7 +132,7 @@ export const venues: Venue[] = [
     sections: [
       {
         id: "male-dvorane",
-        name: "Male dvorane NŠD Gradski vrt",
+        name: "Mala dvorane NŠD Gradski vrt",
         shortDescription:
           "Dvorane za trening, rekreaciju i manje sportske programe.",
         description:
@@ -149,7 +149,7 @@ export const venues: Venue[] = [
         ],
 
         facilities: [
-          "Male sportske dvorane",
+          "Mala sportska dvorana",
           "Svlačionice",
           "Sanitarni čvorovi",
           "Spremišta sportske opreme",
@@ -199,9 +199,9 @@ export const venues: Venue[] = [
       "Tradicionalna osječka sportska dvorana u središtu grada.",
     description:
       "Športska dvorana Zrinjevac jedan je od prepoznatljivih osječkih sportskih objekata. Koristi se za treninge i natjecanja sportskih klubova, školski i rekreativni sport te različite sportske manifestacije.",
-    address: "Adama Reisnera 46/A, 31000 Osijek",
+    address: "Zrinjevac 11, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     indoor: true,
     activities: [
       "Rukomet",
@@ -262,7 +262,7 @@ export const venues: Venue[] = [
       "Športska dvorana Jug koristi se za svakodnevne treninge sportskih klubova, održavanje utakmica, školski sport i rekreativne programe stanovnika južnog dijela Osijeka.",
     address: "Ulica kralja Petra Svačića 67, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     indoor: true,
     activities: [
       "Košarka",
@@ -457,7 +457,7 @@ export const venues: Venue[] = [
       "Pampas je sportski kompleks namijenjen razvoju specijaliziranih sportova. Unutar kompleksa nalaze se Streljana Pampas i Kuglana Pampas, koje koriste sportski klubovi, natjecatelji i rekreativci tijekom cijele godine.",
     address: "Šandora Petefija 204/A, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: true,
 
@@ -605,7 +605,7 @@ export const venues: Venue[] = [
       "Stadion Gradski vrt sportski je objekt namijenjen nogometnim treninzima i utakmicama, atletskim aktivnostima i drugim sportskim događanjima. Kompleks uključuje glavni teren, tribine i prateće sportske prostorije.",
     address: "Woodrowa Wilsona 2, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     indoor: false,
     activities: [
       "Nogomet",
@@ -665,7 +665,7 @@ export const venues: Venue[] = [
       "Hipodrom Pampas namijenjen je konjičkom sportu, treninzima, natjecanjima i manifestacijama. Objekt obuhvaća otvorene sportske površine i prateću infrastrukturu za konje, sportaše i posjetitelje.",
     address: "Šandora Petefija, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     indoor: false,
     activities: [
       "Konjički sport",
@@ -717,7 +717,7 @@ export const venues: Venue[] = [
 
     address: "Ul. Zeleno polje 32, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -830,7 +830,7 @@ export const venues: Venue[] = [
       "Teniski centar Perivoj kralja Tomislava namijenjen je treninzima, rekreativnom igranju tenisa, školi tenisa i održavanju turnira. Centar se nalazi u neposrednoj blizini središta Osijeka.",
     address: "Perivoj kralja Tomislava 1, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     bookingUrl: "https://www.sporty.plus/hr",
     indoor: false,
     activities: [
@@ -889,7 +889,7 @@ export const venues: Venue[] = [
       "Gradski bazeni Osijek zatvoreni su bazenski kompleks namijenjen plivanju, vaterpolu, školi plivanja, treninzima sportskih klubova i rekreaciji građana tijekom cijele godine.",
     address: "Martina Divalta 6A, 31000 Osijek",
     phone: "+385 31 570 066",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
     indoor: true,
     activities: [
       "Plivanje",
@@ -955,7 +955,7 @@ export const venues: Venue[] = [
 
     address: "Gacka 1, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1011,7 +1011,7 @@ export const venues: Venue[] = [
 
     address: "Šetalište kardinala Franje Šepera 8, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1066,7 +1066,7 @@ export const venues: Venue[] = [
 
     address: "Ljudevita Posavskog 29/A, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: true,
 
@@ -1091,12 +1091,12 @@ export const venues: Venue[] = [
       "/images/facilities/bocarski-dom-retfala/bocarski-dom-retfala4.jpg",
     ],
 
-    openingHours: [
-      {
-        day: "Ponedjeljak – Nedjelja",
-        hours: "Prema rasporedu korištenja",
-      },
-    ],
+    // openingHours: [
+    //   {
+    //     day: "Ponedjeljak – Nedjelja",
+    //     hours: "Prema rasporedu korištenja",
+    //   },
+    // ],
 
     prices: [],
 
@@ -1121,7 +1121,7 @@ export const venues: Venue[] = [
 
     address: "Ulica Stjepana Radića 15, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: true,
 
@@ -1174,7 +1174,7 @@ export const venues: Venue[] = [
 
     address: "Više lokacija u gradu Osijeku",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1236,7 +1236,7 @@ export const venues: Venue[] = [
 
     address: "I. G. Kovačića 2, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: true,
 
@@ -1280,7 +1280,7 @@ export const venues: Venue[] = [
 
     address: "J. J. Strossmayera 92, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: true,
 
@@ -1317,7 +1317,7 @@ export const venues: Venue[] = [
 
     address: "Rijeka Drava, Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1356,7 +1356,7 @@ export const venues: Venue[] = [
 
     address: "Orljavska ulica, Tenja",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1394,7 +1394,7 @@ export const venues: Venue[] = [
 
     address: "I. G. Kovačića 2a, 31000 Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1433,7 +1433,7 @@ export const venues: Venue[] = [
 
     address: "Ulica Svetog Leopolda Bogdana Mandića, Osijek",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1473,7 +1473,7 @@ export const venues: Venue[] = [
 
     address: "Svete Ane 1, Tenja",
     phone: "+385 31 285 500",
-    email: "info@sportski-objekti.hr",
+    email: "uprava@sportski-objekti.hr",
 
     indoor: false,
 
@@ -1604,7 +1604,7 @@ export const contactDepartments: ContactDepartment[] = [
   {
     id: "c2",
     name: "Pravo na pristup informacijama",
-    person: "Pravni odjel",
+    person: "",
     email: "ivanka.nadarevic@sportski-objekti.hr",
     phone: "Na pisani upit",
   },

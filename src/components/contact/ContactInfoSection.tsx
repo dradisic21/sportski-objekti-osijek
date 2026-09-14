@@ -81,7 +81,7 @@ import {
   
         <div className="mt-12">
           <p className="text-eyebrow text-ink-muted">
-            Odjeli
+            Kontakt
           </p>
   
           <ul className="mt-6 divide-y divide-line border-y border-line">

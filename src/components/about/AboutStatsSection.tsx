@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui-custom/Reveal";
 
 const stats = [
   {
-    value: 45,
+    value: 62,
     suffix: "",
     label: "Godina djelovanja",
   },

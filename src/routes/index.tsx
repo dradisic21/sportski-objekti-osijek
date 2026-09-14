@@ -63,7 +63,7 @@ function HomePage() {
       {/* <ProgramsSection /> */}
       <FeaturedVenuesSection />
       <InfiniteMarquee items={marqueeItems} />
-      <QuickLinksSection />
+      {/* <QuickLinksSection /> */}
       <CTASection />
     </>
   );

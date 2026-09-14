@@ -23,7 +23,7 @@ const stats = [
     label: "Sportskih događaja",
   },
   {
-    value: 45,
+    value: 62,
     suffix: "",
     label: "Godina djelovanja",
   },

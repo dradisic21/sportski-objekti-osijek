@@ -46,102 +46,128 @@ export function Footer() {
         </div>
 
         {/* Columns */}
-        <div className="grid grid-cols-1 gap-14 pt-16 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <div className="flex items-center gap-3">
-              <Logo inverted className="shrink-0" />
+        <div className="pt-16">
+          <div className="mx-auto flex max-w-7xl flex-col gap-14 md:flex-row md:items-start md:justify-between">
+            <div className="w-full md:max-w-sm">
+              <div className="flex items-center gap-3">
+                <Logo inverted className="shrink-0" />
+              </div>
+
+              <address className="mt-8 space-y-2 text-sm not-italic text-white/70">
+                <p className="text-white">{s.legalName}</p>
+
+                <p>{s.address}</p>
+
+                <p>
+                  <a
+                    href={`tel:${s.phone.replace(/\s/g, "")}`}
+                    className="hover:text-[#60A5FA]"
+                  >
+                    {s.phone}
+                  </a>
+                </p>
+
+                <p>
+                  <a
+                    href={`mailto:${s.email}`}
+                    className="hover:text-[#60A5FA]"
+                  >
+                    {s.email}
+                  </a>
+                </p>
+              </address>
             </div>
-            <address className="mt-8 space-y-2 text-sm not-italic text-white/70">
-              <p className="text-white">{s.legalName}</p>
-              <p>{s.address}</p>
-              <p>
-                <a
-                  href={`tel:${s.phone.replace(/\s/g, "")}`}
-                  className="hover:text-[#60A5FA]"
-                >
-                  {s.phone}
-                </a>
-              </p>
-              <p>
-                <a href={`mailto:${s.email}`} className="hover:text-[#60A5FA]">
-                  {s.email}
-                </a>
-              </p>
-            </address>
-          </div>
 
-          <div className="md:col-span-2">
-            <p className="text-eyebrow text-white/40">Navigacija</p>
-            <ul className="mt-6 space-y-3 text-sm text-white/80">
-              <li>
-                <Link to="/" className="hover:text-[#60A5FA]">
-                  Naslovnica
-                </Link>
-              </li>
-              <li>
-                <Link to="/o-nama" className="hover:text-[#60A5FA]">
-                  O nama
-                </Link>
-              </li>
-              <li>
-                <Link to="/objekti" className="hover:text-[#60A5FA]">
-                  Objekti
-                </Link>
-              </li>
-              <li>
-                <Link to="/dokumenti" className="hover:text-[#60A5FA]">
-                  Dokumenti
-                </Link>
-              </li>
-              <li>
-                <Link to="/kontakt" className="hover:text-[#60A5FA]">
-                  Kontakt
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <div className="w-full md:max-w-xs">
+              <p className="text-eyebrow text-white/40">Navigacija</p>
 
-          <div className="md:col-span-3">
-            <p className="text-eyebrow text-white/40">Objekti</p>
-            <ul className="mt-6 space-y-3 text-sm text-white/80">
-              {VenueRepo.all()
-                .slice(0, 6)
-                .map((v) => (
-                  <li key={v.id}>
-                    <Link
-                      to="/objekti/$slug"
-                      params={{ slug: v.slug }}
-                      className="hover:text-[#60A5FA]"
-                    >
-                      {v.name}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
-          </div>
+              <ul className="mt-6 space-y-3 text-sm text-white/80">
+                <li>
+                  <Link to="/" className="hover:text-[#60A5FA]">
+                    Naslovnica
+                  </Link>
+                </li>
 
-          <div className="md:col-span-3">
-            <p className="text-eyebrow text-white/40">Uredovno vrijeme</p>
-            <ul className="mt-6 space-y-2 text-sm text-white/80">
-              <li className="flex justify-between border-b border-white/10 pb-2">
-                <span>Pon — Pet</span>
-                <span className="font-mono text-xs">08:00 – 16:00</span>
-              </li>
-              <li className="flex justify-between border-b border-white/10 pb-2">
-                <span>Subota</span>
-                <span className="font-mono text-xs">09:00 – 13:00</span>
-              </li>
-              <li className="flex justify-between pb-2">
-                <span>Nedjelja</span>
-                <span className="font-mono text-xs text-white/50">
-                  Zatvoreno
-                </span>
-              </li>
-            </ul>
-            <p className="mt-6 text-xs text-white/50">
-              Radno vrijeme pojedinih dvorana i bazena vidljivo je na stranici
-              svakog objekta.
-            </p>
+                <li>
+                  <Link to="/o-nama" className="hover:text-[#60A5FA]">
+                    O nama
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/objekti" className="hover:text-[#60A5FA]">
+                    Objekti
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/dokumenti" className="hover:text-[#60A5FA]">
+                    Dokumenti
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/kontakt" className="hover:text-[#60A5FA]">
+                    Kontakt
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* <div className="md:col-span-3">
+      <p className="text-eyebrow text-white/40">Objekti</p>
+
+      <ul className="mt-6 space-y-3 text-sm text-white/80">
+        {VenueRepo.all()
+          .slice(0, 6)
+          .map((v) => (
+            <li key={v.id}>
+              <Link
+                to="/objekti/$slug"
+                params={{ slug: v.slug }}
+                className="hover:text-[#60A5FA]"
+              >
+                {v.name}
+              </Link>
+            </li>
+          ))}
+      </ul>
+    </div> */}
+
+            {/* <div className="md:col-span-3">
+      <p className="text-eyebrow text-white/40">
+        Uredovno vrijeme
+      </p>
+
+      <ul className="mt-6 space-y-2 text-sm text-white/80">
+        <li className="flex justify-between border-b border-white/10 pb-2">
+          <span>Pon — Pet</span>
+          <span className="font-mono text-xs">
+            08:00 – 16:00
+          </span>
+        </li>
+
+        <li className="flex justify-between border-b border-white/10 pb-2">
+          <span>Subota</span>
+          <span className="font-mono text-xs">
+            09:00 – 13:00
+          </span>
+        </li>
+
+        <li className="flex justify-between pb-2">
+          <span>Nedjelja</span>
+
+          <span className="font-mono text-xs text-white/50">
+            Zatvoreno
+          </span>
+        </li>
+      </ul>
+
+      <p className="mt-6 text-xs text-white/50">
+        Radno vrijeme pojedinih dvorana i bazena vidljivo je na
+        stranici svakog objekta.
+      </p>
+    </div> */}
           </div>
         </div>
 

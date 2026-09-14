@@ -131,14 +131,14 @@ export function ContactPage() {
             departments={departments}
           />
 
-          <ContactForm
+          {/* <ContactForm
             form={form}
             setForm={setForm}
             status={status}
             errors={errors}
             submit={submit}
             venues={venues}
-          />
+          /> */}
         </div>
       </section>
 
