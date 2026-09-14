@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-
 import { AboutHeroSection } from "@/components/about/AboutHeroSection";
 import { AboutStatsSection } from "@/components/about/AboutStatsSection";
 import { FacilitiesIntroSection } from "@/components/about/FacilitiesIntroSection";
 import { LegalInfoSection } from "@/components/about/LegalInfoSection";
-import { ManagementSection } from "@/components/about/ManagementSection";
+// import { ManagementSection } from "@/components/about/ManagementSection";
 import { MissionVisionSection } from "@/components/about/MissionVisionSection";
 import { StandardsSection } from "@/components/about/StandardsSection";
 import { TimelineSection } from "@/components/about/TimelineSection";
@@ -48,7 +47,7 @@ function AboutPage() {
       <ValuesSection />
       <AboutStatsSection />
       <TimelineSection />
-      <ManagementSection />
+      {/* <ManagementSection /> */}
       <FacilitiesIntroSection />
       <StandardsSection />
       <LegalInfoSection />
