@@ -67,27 +67,26 @@ function formatUnit(unitLabel: string | null): string {
 
 function createPriceLabel(row: PriceItemRow): string {
   const currency = row.currency ?? "EUR";
-  const unit = formatUnit(row.unit_label);
 
   switch (row.vat_type) {
     case "plus_vat":
-      return `${formatCurrency(row.price, currency)} + PDV${unit}`;
+      return `${formatCurrency(row.price, currency)} + PDV`;
 
     case "no_vat":
-      return `${formatCurrency(row.price, currency)}${unit}`;
+      return formatCurrency(row.price, currency);
 
     case "vat_included":
-      return `${formatCurrency(row.price, currency)} s PDV-om${unit}`;
+      return formatCurrency(row.price, currency);
 
     case "dual": {
       const priceNoVat = formatCurrency(row.price_no_vat, currency);
       const priceWithVat = formatCurrency(row.price_with_vat, currency);
 
-      return `${priceNoVat} bez PDV-a / ${priceWithVat} s PDV-om${unit}`;
+      return `${priceNoVat} bez PDV-a / ${priceWithVat} s PDV-om`;
     }
 
     default:
-      return `${formatCurrency(row.price, currency)}${unit}`;
+      return formatCurrency(row.price, currency);
   }
 }
 
