@@ -15,6 +15,8 @@ type PriceItemRow = {
   id: string;
   venue_id: string;
   name: string;
+  description: string | null;
+  note: string | null;
   price: number | string | null;
   price_no_vat: number | string | null;
   price_with_vat: number | string | null;
@@ -39,7 +41,7 @@ function toNumber(value: number | string | null): number | null {
 
 function formatCurrency(
   value: number | string | null,
-  currency = "EUR",
+  currency = "EUR"
 ): string {
   const numericValue = toNumber(value);
 
@@ -117,6 +119,9 @@ function mapPublicPriceItem(row: PriceItemRow): PublicPriceItem {
     id: row.id,
     name: row.name,
 
+    description: row.description?.trim() || undefined,
+    note: row.note?.trim() || undefined,
+
     price: getPrimaryPrice(row),
     unit: row.unit_label?.trim() ?? "",
     active: row.is_active,
@@ -133,9 +138,7 @@ function getVenuePriceSlugs(venue: Venue): string[] {
   return Array.from(new Set([venue.slug, ...sectionSlugs]));
 }
 
-export async function loadVenueWithPrices(
-  venue: Venue,
-): Promise<Venue> {
+export async function loadVenueWithPrices(venue: Venue): Promise<Venue> {
   const slugs = getVenuePriceSlugs(venue);
 
   const { data: venueRows, error: venuesError } = await supabase
@@ -145,7 +148,7 @@ export async function loadVenueWithPrices(
 
   if (venuesError) {
     throw new Error(
-      `Učitavanje objekata za cjenik nije uspjelo: ${venuesError.message}`,
+      `Učitavanje objekata za cjenik nije uspjelo: ${venuesError.message}`
     );
   }
 
@@ -166,36 +169,38 @@ export async function loadVenueWithPrices(
 
   const { data: priceRows, error: pricesError } = await supabase
     .from("price_items")
-    .select(`
-      id,
-      venue_id,
-      name,
-      price,
-      price_no_vat,
-      price_with_vat,
-      vat_type,
-      currency,
-      unit_label,
-      time_range,
-      is_active,
-      sort_order,
-      created_at
-    `)
+    .select(
+      `
+    id,
+    venue_id,
+    name,
+    description,
+    note,
+    price,
+    price_no_vat,
+    price_with_vat,
+    vat_type,
+    currency,
+    unit_label,
+    time_range,
+    is_active,
+    sort_order,
+    created_at
+  `
+    )
     .in("venue_id", venueIds)
     .eq("is_active", true)
     .order("sort_order", { ascending: true })
     .order("created_at", { ascending: true });
 
   if (pricesError) {
-    throw new Error(
-      `Učitavanje cijena nije uspjelo: ${pricesError.message}`,
-    );
+    throw new Error(`Učitavanje cijena nije uspjelo: ${pricesError.message}`);
   }
 
   const rows = (priceRows ?? []) as PriceItemRow[];
 
   const venueIdBySlug = new Map<string, string>(
-    references.map((item) => [item.slug, item.id]),
+    references.map((item) => [item.slug, item.id])
   );
 
   const pricesByVenueId = new Map<string, PublicPriceItem[]>();
@@ -211,7 +216,7 @@ export async function loadVenueWithPrices(
   const mainVenueId = venueIdBySlug.get(venue.slug);
 
   const mainVenuePrices: PriceItem[] = mainVenueId
-    ? pricesByVenueId.get(mainVenueId) ?? []
+    ? (pricesByVenueId.get(mainVenueId) ?? [])
     : [];
 
   return {
@@ -224,7 +229,7 @@ export async function loadVenueWithPrices(
       const sectionVenueId = venueIdBySlug.get(sectionSlug);
 
       const sectionPrices: PriceItem[] = sectionVenueId
-        ? pricesByVenueId.get(sectionVenueId) ?? []
+        ? (pricesByVenueId.get(sectionVenueId) ?? [])
         : [];
 
       return {
