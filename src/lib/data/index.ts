@@ -920,14 +920,17 @@ export const venues: Venue[] = [
     gallery: [
       "/images/facilities/gradski-bazeni/gradski-bazeni2.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni3.jpg",
-      "/images/facilities/gradski-bazeni/gradski-bazeni4.jpeg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni4.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni5.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni6.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni7.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni8.jpeg",
       "/images/facilities/gradski-bazeni/gradski-bazeni8.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni9.jpg",
-      "/images/facilities/gradski-bazeni/gradski-bazeni10.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni10.jpeg",
       "/images/facilities/gradski-bazeni/gradski-bazeni11.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni12.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni13.jpeg",
     ],
 
     openingHours: [
