@@ -915,23 +915,29 @@ export const venues: Venue[] = [
       "Prilagođeni sanitarni čvorovi",
       "Pristup bazenskom prostoru",
     ],
-    heroImage: "/images/facilities/gradski-bazeni/gradski-bazeni.jpg",
+    heroImage: "/images/facilities/gradski-bazeni/gradski-bazeni.jpeg",
 
     gallery: [
       "/images/facilities/gradski-bazeni/gradski-bazeni2.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni3.jpg",
       "/images/facilities/gradski-bazeni/gradski-bazeni4.jpeg",
       "/images/facilities/gradski-bazeni/gradski-bazeni5.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni6.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni7.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni8.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni9.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni10.jpg",
+      "/images/facilities/gradski-bazeni/gradski-bazeni11.jpg",
     ],
 
     openingHours: [
       {
-        day: "Ponedjeljak – Petak",
-        hours: "Prema važećem rasporedu",
+        day: "Svaki dan",
+        hours: "09:00 – 22:00",
       },
       {
-        day: "Subota – Nedjelja",
-        hours: "Prema važećem rasporedu",
+        day: "Blagdanima",
+        hours: "09:00 – 22:00",
       },
     ],
     prices: [],

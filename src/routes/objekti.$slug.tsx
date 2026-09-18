@@ -754,7 +754,7 @@ function VenuePrices({ venue, sectionsWithPrices }: VenuePricesProps) {
               </h3>
             </div>
 
-            <PriceList items={venue.prices} />
+            <PriceList items={venue.prices} venueSlug={venue.slug} />
           </div>
         )}
 
