@@ -8,6 +8,8 @@ import { PriceList } from "@/components/ui-custom/PriceList";
 import { MagneticButton } from "@/components/ui-custom/MagneticButton";
 import { FacilityNotFound } from "@/components/errors/FacilityNotFound";
 import { loadVenueWithPrices } from "@/lib/repositories/publicPriceRepository";
+import { VenueGallery } from "@/components/ui-custom/VenueGallery";
+
 
 export const Route = createFileRoute("/objekti/$slug")({
   loader: async ({ params }) => {
@@ -402,60 +404,6 @@ function VenueContactCard({ venue }: { venue: Venue }) {
   );
 }
 
-type VenueGalleryProps = {
-  name: string;
-  images: string[];
-};
-
-function VenueGallery({ name, images }: VenueGalleryProps) {
-  return (
-    <section className="border-b border-line py-24">
-      <div className="container-editorial">
-        <div className="max-w-3xl">
-          <p className="text-eyebrow text-ink-muted">Galerija</p>
-
-          <h2 className="text-display mt-4 text-4xl text-ink md:text-5xl">
-            Fotografije objekta
-          </h2>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-12">
-          {images.map((image, index) => {
-            const isFeaturedImage = index === 0;
-
-            return (
-              <figure
-                key={`${image}-${index}`}
-                className={
-                  isFeaturedImage
-                    ? "group relative overflow-hidden rounded bg-secondary md:col-span-8 md:row-span-2"
-                    : "group relative overflow-hidden rounded bg-secondary md:col-span-4"
-                }
-              >
-                <div
-                  className={
-                    isFeaturedImage
-                      ? "aspect-[16/11] h-full min-h-[320px] md:aspect-auto md:min-h-[520px]"
-                      : "aspect-[4/3]"
-                  }
-                >
-                  <img
-                    src={image}
-                    alt={`${name} — fotografija ${index + 1}`}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </figure>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function VenueSections({ sections }: { sections: VenueSection[] }) {
   return (
@@ -493,7 +441,10 @@ type VenueSectionCardProps = {
   index: number;
 };
 
-function VenueSectionCard({ section, index }: VenueSectionCardProps) {
+function VenueSectionCard({
+  section,
+  index,
+}: VenueSectionCardProps) {
   const sectionSlug = section.slug ?? section.id;
   const bookingUrl = getBookingUrl(sectionSlug);
 
@@ -503,38 +454,12 @@ function VenueSectionCard({ section, index }: VenueSectionCardProps) {
       className="scroll-mt-32 overflow-hidden rounded border border-line bg-background"
     >
       {section.gallery && section.gallery.length > 0 && (
-        <div className="grid grid-cols-1 gap-1 md:h-[560px] md:grid-cols-[2fr_1fr] md:grid-rows-2">
-          {section.gallery.slice(0, 3).map((image, imageIndex) => {
-            const isFeaturedImage = imageIndex === 0;
-
-            return (
-              <figure
-                key={`${section.id}-${image}-${imageIndex}`}
-                className={[
-                  "group relative min-h-0 overflow-hidden rounded bg-secondary",
-                  isFeaturedImage ? "md:row-span-2" : "",
-                ].join(" ")}
-              >
-                <div
-                  className={[
-                    "h-full w-full",
-                    isFeaturedImage
-                      ? "aspect-[16/11] md:aspect-auto"
-                      : "aspect-[4/3] md:aspect-auto",
-                  ].join(" ")}
-                >
-                  <img
-                    src={image}
-                    alt={`${section.name} — fotografija ${imageIndex + 1}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </figure>
-            );
-          })}
+        <div className="p-4 pb-0 md:p-6 md:pb-0">
+          <VenueGallery
+            name={section.name}
+            images={section.gallery}
+            variant="section"
+          />
         </div>
       )}
 
@@ -559,81 +484,107 @@ function VenueSectionCard({ section, index }: VenueSectionCardProps) {
               {section.description}
             </p>
 
-            {section.activities && section.activities.length > 0 && (
-              <div className="mt-10">
-                <p className="text-eyebrow text-ink-muted">Aktivnosti</p>
+            {section.activities &&
+              section.activities.length > 0 && (
+                <div className="mt-10">
+                  <p className="text-eyebrow text-ink-muted">
+                    Aktivnosti
+                  </p>
 
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {section.activities.map((activity) => (
-                    <li
-                      key={activity}
-                      className="rounded-full border border-line px-3 py-1 text-xs text-ink-soft"
-                    >
-                      {activity}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {section.activities.map((activity) => (
+                      <li
+                        key={activity}
+                        className="rounded-full border border-line px-3 py-1 text-xs text-ink-soft"
+                      >
+                        {activity}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            {section.accessibility && section.accessibility.length > 0 && (
-              <div className="mt-10">
-                <p className="text-eyebrow text-ink-muted">Pristupačnost</p>
+            {section.accessibility &&
+              section.accessibility.length > 0 && (
+                <div className="mt-10">
+                  <p className="text-eyebrow text-ink-muted">
+                    Pristupačnost
+                  </p>
 
-                <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-                  {section.accessibility.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span aria-hidden className="text-accent">
-                        ·
-                      </span>
+                  <ul className="mt-4 space-y-2 text-sm text-ink-soft">
+                    {section.accessibility.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-2"
+                      >
+                        <span
+                          aria-hidden
+                          className="text-accent"
+                        >
+                          ·
+                        </span>
 
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
           </div>
 
           <div className="md:col-span-5">
-            {section.facilities && section.facilities.length > 0 && (
-              <div>
-                <p className="text-eyebrow text-ink-muted">Sadržaji</p>
+            {section.facilities &&
+              section.facilities.length > 0 && (
+                <div>
+                  <p className="text-eyebrow text-ink-muted">
+                    Sadržaji
+                  </p>
 
-                <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-                  {section.facilities.map((facility) => (
-                    <li key={facility} className="flex gap-2">
-                      <span aria-hidden className="text-accent">
-                        ·
-                      </span>
+                  <ul className="mt-4 space-y-2 text-sm text-ink-soft">
+                    {section.facilities.map((facility) => (
+                      <li
+                        key={facility}
+                        className="flex gap-2"
+                      >
+                        <span
+                          aria-hidden
+                          className="text-accent"
+                        >
+                          ·
+                        </span>
 
-                      <span>{facility}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                        <span>{facility}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            {section.openingHours && section.openingHours.length > 0 && (
-              <div className="mt-10">
-                <p className="text-eyebrow text-ink-muted">Radno vrijeme</p>
+            {section.openingHours &&
+              section.openingHours.length > 0 && (
+                <div className="mt-10">
+                  <p className="text-eyebrow text-ink-muted">
+                    Radno vrijeme
+                  </p>
 
-                <ul className="mt-4 space-y-3 text-sm">
-                  {section.openingHours.map((item) => (
-                    <li
-                      key={`${section.id}-${item.day}-${item.hours}`}
-                      className="border-b border-line pb-3 last:border-b-0"
-                    >
-                      <span className="block text-ink-soft">{item.day}</span>
+                  <ul className="mt-4 space-y-3 text-sm">
+                    {section.openingHours.map((item) => (
+                      <li
+                        key={`${section.id}-${item.day}-${item.hours}`}
+                        className="border-b border-line pb-3 last:border-b-0"
+                      >
+                        <span className="block text-ink-soft">
+                          {item.day}
+                        </span>
 
-                      <span className="mt-1 block font-mono text-xs leading-5 text-ink">
-                        {item.hours}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                        <span className="mt-1 block font-mono text-xs leading-5 text-ink">
+                          {item.hours}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
             {bookingUrl && (
               <div className="mt-10">
@@ -648,23 +599,27 @@ function VenueSectionCard({ section, index }: VenueSectionCardProps) {
               </div>
             )}
 
-            {section.prices && section.prices.length > 0 && (
-              <div className="mt-10 rounded border border-line bg-surface p-5">
-                <p className="text-eyebrow text-ink-muted">Zaseban cjenik</p>
+            {section.prices &&
+              section.prices.length > 0 && (
+                <div className="mt-10 rounded border border-line bg-surface p-5">
+                  <p className="text-eyebrow text-ink-muted">
+                    Zaseban cjenik
+                  </p>
 
-                <p className="mt-3 text-sm leading-6 text-ink-soft">
-                  Ovaj dio objekta ima vlastite cijene korištenja. Cijeli cjenik
-                  prikazan je u nastavku stranice.
-                </p>
+                  <p className="mt-3 text-sm leading-6 text-ink-soft">
+                    Ovaj dio objekta ima vlastite cijene
+                    korištenja. Cijeli cjenik prikazan je u
+                    nastavku stranice.
+                  </p>
 
-                <a
-                  href={`#cjenik-${section.slug ?? section.id}`}
-                  className="mt-4 inline-flex font-mono text-[11px] uppercase tracking-widest text-accent transition-opacity hover:opacity-70"
-                >
-                  Pogledaj cjenik ↓
-                </a>
-              </div>
-            )}
+                  <a
+                    href={`#cjenik-${section.slug ?? section.id}`}
+                    className="mt-4 inline-flex font-mono text-[11px] uppercase tracking-widest text-accent transition-opacity hover:opacity-70"
+                  >
+                    Pogledaj cjenik ↓
+                  </a>
+                </div>
+              )}
           </div>
         </div>
       </div>

@@ -743,7 +743,7 @@ export const venues: Venue[] = [
 
     gallery: [
       "/images/facilities/sc-olimpija/sc-olimpija2.jpg",
-      "/images/facilities/sc-olimpija/sc-olimpija3.jpg",
+      "/images/facilities/sc-olimpija/sc-olimpija3.jpeg",
       "/images/facilities/sc-olimpija/sc-olimpija4.jpg",
     ],
 
