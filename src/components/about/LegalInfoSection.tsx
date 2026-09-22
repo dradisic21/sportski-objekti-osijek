@@ -69,7 +69,7 @@ export function LegalInfoSection() {
 
           <div className="mt-8">
             <MagneticButton to="/kontakt">
-              Kontakt odjeli
+              Kontakt
             </MagneticButton>
           </div>
         </div>

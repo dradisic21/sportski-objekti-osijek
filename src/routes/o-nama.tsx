@@ -46,9 +46,9 @@ function AboutPage() {
       <MissionVisionSection />
       <ValuesSection />
       <AboutStatsSection />
-      <TimelineSection />
+      {/* <TimelineSection /> */}
       {/* <ManagementSection /> */}
-      <FacilitiesIntroSection />
+      {/* <FacilitiesIntroSection /> */}
       <StandardsSection />
       <LegalInfoSection />
     </>

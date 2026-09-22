@@ -232,7 +232,10 @@ export const venues: Venue[] = [
       "/images/facilities/sd-zrinjevac/sd-zrinjevac4.jpg",
       "/images/facilities/sd-zrinjevac/sd-zrinjevac5.jpeg",
       "/images/facilities/sd-zrinjevac/sd-zrinjevac6.jpeg",
-      "/images/facilities/sd-zrinjevac/sd-zrinjevac7.jpg",
+      "/images/facilities/sd-zrinjevac/sd-zrinjevac7.jpeg",
+      "/images/facilities/sd-zrinjevac/sd-zrinjevac8.jpeg",
+      // "/images/facilities/sd-zrinjevac/sd-zrinjevac9.JPG",
+      "/images/facilities/sd-zrinjevac/sd-zrinjevac10.jpg",
     ],
     openingHours: [
       {
@@ -434,7 +437,7 @@ export const venues: Venue[] = [
         gallery: [
           "/images/facilities/srednjeskolsko-igraliste/nogometni-kavez-srednjeskolsko-igraliste.jpg",
           "/images/facilities/srednjeskolsko-igraliste/nogometni-kavez-srednjeskolsko-igraliste2.jpg",
-          "/images/facilities/srednjeskolsko-igraliste/nogometni-kavez-srednjeskolsko-igraliste3.jpg",
+          // "/images/facilities/srednjeskolsko-igraliste/nogometni-kavez-srednjeskolsko-igraliste3.jpg",
         ],
       },
     ],
@@ -476,6 +479,9 @@ export const venues: Venue[] = [
 
     gallery: [
       "/images/facilities/pampas/pampas2.jpg",
+      "/images/facilities/pampas/pampas2.jpeg",
+      "/images/facilities/pampas/pampas3.jpeg",
+      "/images/facilities/pampas/pampas4.jpeg",
       "/images/facilities/pampas/pampas3.jpg",
       "/images/facilities/pampas/pampas4.jpg",
       "/images/facilities/pampas/pampas5.jpg",
@@ -554,6 +560,8 @@ export const venues: Venue[] = [
           "Kuglana Pampas koristi se za treninge i natjecanja kuglačkih klubova te rekreativno kuglanje.",
 
         gallery: [
+          "/images/facilities/kuglana-pampas/kuglana-pampas.jpeg",
+          "/images/facilities/kuglana-pampas/kuglana-pampas5.jpeg",
           "/images/facilities/kuglana-pampas/kuglana-pampas.jpg",
           "/images/facilities/kuglana-pampas/kuglana-pampas2.jpg",
           "/images/facilities/kuglana-pampas/kuglana-pampas3.jpg",

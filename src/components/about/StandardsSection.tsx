@@ -39,7 +39,7 @@ const standards = [
     icon: Users,
     title: "Profesionalno osoblje",
     description:
-      "Voditelji, treneri, spasioci i tehnička služba u punom radnom vremenu.",
+      "Voditelji, koordinatori, domari i tehnicka sluzba u punom radnom vremenu.",
   },
 ];
 
